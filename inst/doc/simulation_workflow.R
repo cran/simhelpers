@@ -189,8 +189,8 @@ run_sim <- function(iterations, n1, n2, mean_diff, seed = NULL) {
 
   results <-
     rerun(iterations, {
-      dat <- generate_dat(n2, n2, mean_diff)
-      estimate(dat, n1, n2)
+      dat <- generate_dat(n1 = n1, n2 = n2, mean_diff = mean_diff)
+      estimate(dat = dat, n1 = n1, n2 = n2)
     }) %>%
     bind_rows()
   
@@ -258,7 +258,7 @@ results %>%
 ## ---- eval = FALSE------------------------------------------------------------
 #  plan(multisession)
 
-## -----------------------------------------------------------------------------
+## ---- warning = F, message = F------------------------------------------------
 library(future)
 library(furrr)
 
@@ -275,7 +275,7 @@ results %>%
   kable()
 
 
-## -----------------------------------------------------------------------------
+## ---- warning = F, message = F------------------------------------------------
 plan(multisession)
 evaluate_by_row(params, run_sim) %>%
   kable()

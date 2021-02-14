@@ -15,7 +15,7 @@ abs_dat <- tibble(Criterion = c("Bias","Variance","MSE", "RMSE"),
               Estimate = c("$\\bar{T} - \\theta$", "$S_T^2$", 
                            "$\\frac{1}{K}\\sum_{k=1}^{K}\\left(T_k - \\theta\\right)^2$", "$\\sqrt{\\frac{1}{K}\\sum_{k=1}^{K}\\left(T_k - \\theta\\right)^2}$"),
               MCSE = c("$\\sqrt{S_T^2/ K}$", "$S_T^2 \\sqrt{\\frac{k_T - 1}{K}}$",  
-                       "$\\sqrt{\\frac{1}{K}\\left[S_T^4 (k_T - 1) + 4 S_T^3 g_T(\\bar{T} - \\theta) + 4 S_T^2 (\\bar{T} - \\theta)^2\\right]}$ ", "$\\sqrt{\\frac{1}{K} \\sum_{j=1}^K \\left(RMSE_{(j)} - RMSE\\right)^2}$"))
+                       "$\\sqrt{\\frac{1}{K}\\left[S_T^4 (k_T - 1) + 4 S_T^3 g_T(\\bar{T} - \\theta) + 4 S_T^2 (\\bar{T} - \\theta)^2\\right]}$ ", "$\\sqrt{\\frac{K - 1}{K} \\sum_{j=1}^K \\left(RMSE_{(j)} - RMSE\\right)^2}$"))
 
 knitr::kable(abs_dat, escape = FALSE, caption = "Table 1. Absolute Performance Criteria") %>%
   kable_styling(bootstrap_options = c("striped", "hover"))
@@ -55,7 +55,7 @@ rel_dat <- tibble(Criterion = c("Relative Bias","Relative MSE", "Relative RMSE")
               Definition = c("$\\text{E}(T) / \\theta$", "$\\text{E}\\left[(T - \\theta)^2\\right]/ \\theta^2$", "$\\sqrt{\\text{E}\\left[(T - \\theta)^2\\right]/ \\theta^2}$"),
               Estimate = c("$\\bar{T} / \\theta$", "$\\frac{(\\bar{T} - \\theta)^2 + S_T^2}{\\theta^2}$", "$\\sqrt{\\frac{(\\bar{T} - \\theta)^2 + S_T^2}{\\theta^2}}$"),
               MCSE = c("$\\sqrt{S_T^2 / (K\\theta^2)}$", 
-                       "$\\sqrt{\\frac{1}{K\\theta^2}\\left[S_T^4 (k_T - 1) + 4 S_T^3 g_T(\\bar{T} - \\theta) + 4 S_T^2 (\\bar{T} - \\theta)^2\\right]}$", "$\\sqrt{\\frac{1}{K} \\sum_{j=1}^K \\left(rRMSE_{(j)} - rRMSE)^2\\right)}$"))
+                       "$\\sqrt{\\frac{1}{K\\theta^2}\\left[S_T^4 (k_T - 1) + 4 S_T^3 g_T(\\bar{T} - \\theta) + 4 S_T^2 (\\bar{T} - \\theta)^2\\right]}$", "$\\sqrt{\\frac{K - 1}{K} \\sum_{j=1}^K \\left(rRMSE_{(j)} - rRMSE)^2\\right)}$"))
 
 knitr::kable(rel_dat, escape = FALSE, caption = "Table 2. Relative Performance Criteria") %>%
   kable_styling(bootstrap_options = c("striped", "hover"))
@@ -75,8 +75,8 @@ rel_dat_var <- tibble(Criterion = c("Relative Bias","Relative MSE", "Relative RM
                       Measure = c("Relative difference from true parameter", "Accuracy", "Accuracy"),
               Definition = c("$\\text{E}(V) / \\lambda$", "$\\text{E}\\left[(V - \\lambda)^2\\right]/ \\lambda^2$", "$\\sqrt{\\text{E}\\left[(V - \\lambda)^2\\right]/ \\lambda^2}$"),
               Estimate = c("$\\bar{V} / S_T^2$", "$\\frac{(\\bar{V} - S_T^2)^2 + S_V^2}{S_T^4}$", "$\\sqrt{\\frac{(\\bar{V} - S_T^2)^2 + S_V^2}{S_T^4}}$"),
-              MCSE = c("$\\sqrt{\\frac{1}{K} \\sum_{j=1}^K \\left(rB_{(j)} - rB\\right)^2}$", "$\\sqrt{\\frac{1}{K} \\sum_{j=1}^K \\left(rMSE_{(j)} - rMSE\\right)^2}$",
-                      "$\\sqrt{\\frac{1}{K} \\sum_{j=1}^K \\left(rRMSE_{(j)} - rRMSE\\right)^2}$" ))
+              MCSE = c("$\\sqrt{\\frac{K - 1}{K} \\sum_{j=1}^K \\left(rB_{(j)} - rB\\right)^2}$", "$\\sqrt{\\frac{K - 1}{K} \\sum_{j=1}^K \\left(rMSE_{(j)} - rMSE\\right)^2}$",
+                      "$\\sqrt{\\frac{K - 1}{K} \\sum_{j=1}^K \\left(rRMSE_{(j)} - rRMSE\\right)^2}$" ))
 
 
 knitr::kable(rel_dat_var, escape = FALSE, caption = "Table 3. Relative Performance Criteria for Variance Estimators") %>%

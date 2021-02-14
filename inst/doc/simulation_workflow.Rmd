@@ -1,10 +1,14 @@
 ---
 title: "Simulation Workflow"
-output: rmarkdown::html_vignette
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    number_sections: true
+    toc: true
 bibliography: references.bib
 csl: apa.csl
 vignette: >
-  %\VignetteIndexEntry{simulation_workflow}
+  %\VignetteIndexEntry{Simulation Workflow}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
   %\VignetteDepends{dplyr}
@@ -293,8 +297,8 @@ run_sim <- function(iterations, n1, n2, mean_diff, seed = NULL) {
 
   results <-
     rerun(iterations, {
-      dat <- generate_dat(n2, n2, mean_diff)
-      estimate(dat, n1, n2)
+      dat <- generate_dat(n1 = n1, n2 = n2, mean_diff = mean_diff)
+      estimate(dat = dat, n1 = n1, n2 = n2)
     }) %>%
     bind_rows()
   
@@ -385,7 +389,7 @@ plan(multisession)
 
 Once the cluster is configured, we can just replace [`pmap()`](https://purrr.tidyverse.org/reference/map2.html) from `purrr` with [`future_pmap()`](https://davisvaughan.github.io/furrr/reference/future_map2.html) to run the simulation in parallel. 
 
-```{r}
+```{r, warning = F, message = F}
 library(future)
 library(furrr)
 
@@ -406,7 +410,7 @@ results %>%
 
 In the `simhelpers` package, we have a function, `evaluate_by_row()`, that implements this `furrr` workflow automatically: 
 
-```{r}
+```{r, warning = F, message = F}
 plan(multisession)
 evaluate_by_row(params, run_sim) %>%
   kable()

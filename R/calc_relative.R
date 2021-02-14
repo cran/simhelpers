@@ -44,7 +44,7 @@ calc_relative <- function(res_dat, estimates, true_param, perfm_criteria = c("re
 
 
   mse <- bias^2 + var_t # mse
-  rel_mse <- mse / (true_param^2) # relative mse
+  rel_mse <- mse / (true_param)^2 # relative mse
   rel_mse_j <- ((t_bar_j - true_param)^2 + s_sq_t_j)/(true_param)^2 # jacknife relative mse
 
 
@@ -70,7 +70,7 @@ calc_relative <- function(res_dat, estimates, true_param, perfm_criteria = c("re
   if("relative rmse" %in% perfm_criteria){
     dat <- dat %>%
       dplyr::mutate(rel_rmse = sqrt(rel_mse),
-                    rel_rmse_mcse = sqrt((1/K) * sum((sqrt(rel_mse_j) - rel_rmse)^2)),
+                    rel_rmse_mcse = sqrt(((K - 1)/K) * sum((sqrt(rel_mse_j) - rel_rmse)^2)),
                     rel_rmse = dplyr::if_else(true_param == 0, as.numeric(NA), rel_rmse),
                     rel_rmse_mcse = dplyr::if_else(true_param == 0, as.numeric(NA), rel_rmse_mcse))
   }
@@ -78,3 +78,4 @@ calc_relative <- function(res_dat, estimates, true_param, perfm_criteria = c("re
   return(dat)
 
 }
+
