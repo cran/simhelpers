@@ -29,10 +29,9 @@
 #'
 #' @importFrom rlang .data
 #' @importFrom magrittr "%>%"
-#' @importFrom furrr "future_options"
 
 evaluate_by_row <- function(params, sim_function, ...,
-                            .progress = FALSE, .options = furrr::future_options(),
+                            .progress = FALSE, .options = furrr::furrr_options(),
                             system_time = TRUE) {
 
   sys_tm <- system.time(

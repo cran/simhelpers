@@ -129,9 +129,6 @@ t_res <-
 
 t_res
 
-## -----------------------------------------------------------------------------
-all_equal(est_res, t_res)
-
 ## ---- eval = FALSE------------------------------------------------------------
 #  estimate <- function(dat, design_parameters){
 #  
@@ -242,7 +239,7 @@ nrow(params)
 head(params)
 
 
-## -----------------------------------------------------------------------------
+## ----serial-------------------------------------------------------------------
 system.time(
   results <- 
     params %>%
@@ -258,27 +255,23 @@ results %>%
 ## ---- eval = FALSE------------------------------------------------------------
 #  plan(multisession)
 
-## ---- warning = F, message = F------------------------------------------------
-library(future)
-library(furrr)
+## ----furrr, warning = F, message = F, eval = FALSE----------------------------
+#  library(future)
+#  library(furrr)
+#  
+#  plan(multisession) # choose an appropriate plan from the future package
+#  
+#  system.time(
+#    results <-
+#      params %>%
+#      mutate(res = future_pmap(., .f = run_sim)) %>%
+#      unnest(cols = res)
+#  )
+#  
 
-plan(multisession) # choose an appropriate plan from the future package
-
-system.time(
-  results <-
-    params %>%
-    mutate(res = future_pmap(., .f = run_sim)) %>%
-    unnest(cols = res)
-)
-
-results %>%
-  kable()
-
-
-## ---- warning = F, message = F------------------------------------------------
-plan(multisession)
-evaluate_by_row(params, run_sim) %>%
-  kable()
+## ----evaluate-by-row, warning = F, message = F, eval = FALSE------------------
+#  plan(multisession)
+#  results <- evaluate_by_row(params, run_sim)
 
 ## ----setup, eval = FALSE------------------------------------------------------
 #  create_skeleton()
