@@ -11,31 +11,266 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
-<meta name="date" content="2022-05-03" />
+<meta name="date" content="2024-02-23" />
 
 <title>Simulation Performance Criteria and MCSE</title>
 
-<script src="data:application/javascript;base64,Ly8gUGFuZG9jIDIuOSBhZGRzIGF0dHJpYnV0ZXMgb24gYm90aCBoZWFkZXIgYW5kIGRpdi4gV2UgcmVtb3ZlIHRoZSBmb3JtZXIgKHRvCi8vIGJlIGNvbXBhdGlibGUgd2l0aCB0aGUgYmVoYXZpb3Igb2YgUGFuZG9jIDwgMi44KS4KZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uKGUpIHsKICB2YXIgaHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCJkaXYuc2VjdGlvbltjbGFzcyo9J2xldmVsJ10gPiA6Zmlyc3QtY2hpbGQiKTsKICB2YXIgaSwgaCwgYTsKICBmb3IgKGkgPSAwOyBpIDwgaHMubGVuZ3RoOyBpKyspIHsKICAgIGggPSBoc1tpXTsKICAgIGlmICghL15oWzEtNl0kL2kudGVzdChoLnRhZ05hbWUpKSBjb250aW51ZTsgIC8vIGl0IHNob3VsZCBiZSBhIGhlYWRlciBoMS1oNgogICAgYSA9IGguYXR0cmlidXRlczsKICAgIHdoaWxlIChhLmxlbmd0aCA+IDApIGgucmVtb3ZlQXR0cmlidXRlKGFbMF0ubmFtZSk7CiAgfQp9KTsK"></script>
-<script src="data:application/javascript;base64,JChkb2N1bWVudCkucmVhZHkoZnVuY3Rpb24oKXsKICAgIGlmICh0eXBlb2YgJCgnW2RhdGEtdG9nZ2xlPSJ0b29sdGlwIl0nKS50b29sdGlwID09PSAnZnVuY3Rpb24nKSB7CiAgICAgICAgJCgnW2RhdGEtdG9nZ2xlPSJ0b29sdGlwIl0nKS50b29sdGlwKCk7CiAgICB9CiAgICBpZiAoJCgnW2RhdGEtdG9nZ2xlPSJwb3BvdmVyIl0nKS5wb3BvdmVyID09PSAnZnVuY3Rpb24nKSB7CiAgICAgICAgJCgnW2RhdGEtdG9nZ2xlPSJwb3BvdmVyIl0nKS5wb3BvdmVyKCk7CiAgICB9Cn0pOwo="></script>
-<link href="data:text/css,%0A%2Elightable%2Dminimal%20%7B%0Aborder%2Dcollapse%3A%20separate%3B%0Aborder%2Dspacing%3A%2016px%201px%3B%0Awidth%3A%20100%25%3B%0Amargin%2Dbottom%3A%2010px%3B%0A%7D%0A%2Elightable%2Dminimal%20td%20%7B%0Amargin%2Dleft%3A%205px%3B%0Amargin%2Dright%3A%205px%3B%0A%7D%0A%2Elightable%2Dminimal%20th%20%7B%0Amargin%2Dleft%3A%205px%3B%0Amargin%2Dright%3A%205px%3B%0A%7D%0A%2Elightable%2Dminimal%20thead%20tr%3Alast%2Dchild%20th%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%2300000050%3B%0Aempty%2Dcells%3A%20hide%3B%0A%7D%0A%2Elightable%2Dminimal%20tbody%20tr%3Afirst%2Dchild%20td%20%7B%0Apadding%2Dtop%3A%200%2E5em%3B%0A%7D%0A%2Elightable%2Dminimal%2Elightable%2Dhover%20tbody%20tr%3Ahover%20%7B%0Abackground%2Dcolor%3A%20%23f5f5f5%3B%0A%7D%0A%2Elightable%2Dminimal%2Elightable%2Dstriped%20tbody%20tr%3Anth%2Dchild%28even%29%20%7B%0Abackground%2Dcolor%3A%20%23f5f5f5%3B%0A%7D%0A%2Elightable%2Dclassic%20%7B%0Aborder%2Dtop%3A%200%2E16em%20solid%20%23111111%3B%0Aborder%2Dbottom%3A%200%2E16em%20solid%20%23111111%3B%0Awidth%3A%20100%25%3B%0Amargin%2Dbottom%3A%2010px%3B%0Amargin%3A%2010px%205px%3B%0A%7D%0A%2Elightable%2Dclassic%20tfoot%20tr%20td%20%7B%0Aborder%3A%200%3B%0A%7D%0A%2Elightable%2Dclassic%20tfoot%20tr%3Afirst%2Dchild%20td%20%7B%0Aborder%2Dtop%3A%200%2E14em%20solid%20%23111111%3B%0A%7D%0A%2Elightable%2Dclassic%20caption%20%7B%0Acolor%3A%20%23222222%3B%0A%7D%0A%2Elightable%2Dclassic%20td%20%7B%0Apadding%2Dleft%3A%205px%3B%0Apadding%2Dright%3A%205px%3B%0Acolor%3A%20%23222222%3B%0A%7D%0A%2Elightable%2Dclassic%20th%20%7B%0Apadding%2Dleft%3A%205px%3B%0Apadding%2Dright%3A%205px%3B%0Afont%2Dweight%3A%20normal%3B%0Acolor%3A%20%23222222%3B%0A%7D%0A%2Elightable%2Dclassic%20thead%20tr%3Alast%2Dchild%20th%20%7B%0Aborder%2Dbottom%3A%200%2E10em%20solid%20%23111111%3B%0A%7D%0A%2Elightable%2Dclassic%2Elightable%2Dhover%20tbody%20tr%3Ahover%20%7B%0Abackground%2Dcolor%3A%20%23F9EEC1%3B%0A%7D%0A%2Elightable%2Dclassic%2Elightable%2Dstriped%20tbody%20tr%3Anth%2Dchild%28even%29%20%7B%0Abackground%2Dcolor%3A%20%23f5f5f5%3B%0A%7D%0A%2Elightable%2Dclassic%2D2%20%7B%0Aborder%2Dtop%3A%203px%20double%20%23111111%3B%0Aborder%2Dbottom%3A%203px%20double%20%23111111%3B%0Awidth%3A%20100%25%3B%0Amargin%2Dbottom%3A%2010px%3B%0A%7D%0A%2Elightable%2Dclassic%2D2%20tfoot%20tr%20td%20%7B%0Aborder%3A%200%3B%0A%7D%0A%2Elightable%2Dclassic%2D2%20tfoot%20tr%3Afirst%2Dchild%20td%20%7B%0Aborder%2Dtop%3A%203px%20double%20%23111111%3B%0A%7D%0A%2Elightable%2Dclassic%2D2%20caption%20%7B%0Acolor%3A%20%23222222%3B%0A%7D%0A%2Elightable%2Dclassic%2D2%20td%20%7B%0Apadding%2Dleft%3A%205px%3B%0Apadding%2Dright%3A%205px%3B%0Acolor%3A%20%23222222%3B%0A%7D%0A%2Elightable%2Dclassic%2D2%20th%20%7B%0Apadding%2Dleft%3A%205px%3B%0Apadding%2Dright%3A%205px%3B%0Afont%2Dweight%3A%20normal%3B%0Acolor%3A%20%23222222%3B%0A%7D%0A%2Elightable%2Dclassic%2D2%20tbody%20tr%3Alast%2Dchild%20td%20%7B%0Aborder%2Dbottom%3A%203px%20double%20%23111111%3B%0A%7D%0A%2Elightable%2Dclassic%2D2%20thead%20tr%3Alast%2Dchild%20th%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23111111%3B%0A%7D%0A%2Elightable%2Dclassic%2D2%2Elightable%2Dhover%20tbody%20tr%3Ahover%20%7B%0Abackground%2Dcolor%3A%20%23F9EEC1%3B%0A%7D%0A%2Elightable%2Dclassic%2D2%2Elightable%2Dstriped%20tbody%20tr%3Anth%2Dchild%28even%29%20%7B%0Abackground%2Dcolor%3A%20%23f5f5f5%3B%0A%7D%0A%2Elightable%2Dmaterial%20%7B%0Amin%2Dwidth%3A%20100%25%3B%0Awhite%2Dspace%3A%20nowrap%3B%0Atable%2Dlayout%3A%20fixed%3B%0Afont%2Dfamily%3A%20Roboto%2C%20sans%2Dserif%3B%0Aborder%3A%201px%20solid%20%23EEE%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0Amargin%2Dbottom%3A%2010px%3B%0A%7D%0A%2Elightable%2Dmaterial%20tfoot%20tr%20td%20%7B%0Aborder%3A%200%3B%0A%7D%0A%2Elightable%2Dmaterial%20tfoot%20tr%3Afirst%2Dchild%20td%20%7B%0Aborder%2Dtop%3A%201px%20solid%20%23EEE%3B%0A%7D%0A%2Elightable%2Dmaterial%20th%20%7B%0Aheight%3A%2056px%3B%0Apadding%2Dleft%3A%2016px%3B%0Apadding%2Dright%3A%2016px%3B%0A%7D%0A%2Elightable%2Dmaterial%20td%20%7B%0Aheight%3A%2052px%3B%0Apadding%2Dleft%3A%2016px%3B%0Apadding%2Dright%3A%2016px%3B%0Aborder%2Dtop%3A%201px%20solid%20%23eeeeee%3B%0A%7D%0A%2Elightable%2Dmaterial%2Elightable%2Dhover%20tbody%20tr%3Ahover%20%7B%0Abackground%2Dcolor%3A%20%23f5f5f5%3B%0A%7D%0A%2Elightable%2Dmaterial%2Elightable%2Dstriped%20tbody%20tr%3Anth%2Dchild%28even%29%20%7B%0Abackground%2Dcolor%3A%20%23f5f5f5%3B%0A%7D%0A%2Elightable%2Dmaterial%2Elightable%2Dstriped%20tbody%20td%20%7B%0Aborder%3A%200%3B%0A%7D%0A%2Elightable%2Dmaterial%2Elightable%2Dstriped%20thead%20tr%3Alast%2Dchild%20th%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ddd%3B%0A%7D%0A%2Elightable%2Dmaterial%2Ddark%20%7B%0Amin%2Dwidth%3A%20100%25%3B%0Awhite%2Dspace%3A%20nowrap%3B%0Atable%2Dlayout%3A%20fixed%3B%0Afont%2Dfamily%3A%20Roboto%2C%20sans%2Dserif%3B%0Aborder%3A%201px%20solid%20%23FFFFFF12%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0Amargin%2Dbottom%3A%2010px%3B%0Abackground%2Dcolor%3A%20%23363640%3B%0A%7D%0A%2Elightable%2Dmaterial%2Ddark%20tfoot%20tr%20td%20%7B%0Aborder%3A%200%3B%0A%7D%0A%2Elightable%2Dmaterial%2Ddark%20tfoot%20tr%3Afirst%2Dchild%20td%20%7B%0Aborder%2Dtop%3A%201px%20solid%20%23FFFFFF12%3B%0A%7D%0A%2Elightable%2Dmaterial%2Ddark%20th%20%7B%0Aheight%3A%2056px%3B%0Apadding%2Dleft%3A%2016px%3B%0Apadding%2Dright%3A%2016px%3B%0Acolor%3A%20%23FFFFFF60%3B%0A%7D%0A%2Elightable%2Dmaterial%2Ddark%20td%20%7B%0Aheight%3A%2052px%3B%0Apadding%2Dleft%3A%2016px%3B%0Apadding%2Dright%3A%2016px%3B%0Acolor%3A%20%23FFFFFF%3B%0Aborder%2Dtop%3A%201px%20solid%20%23FFFFFF12%3B%0A%7D%0A%2Elightable%2Dmaterial%2Ddark%2Elightable%2Dhover%20tbody%20tr%3Ahover%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF12%3B%0A%7D%0A%2Elightable%2Dmaterial%2Ddark%2Elightable%2Dstriped%20tbody%20tr%3Anth%2Dchild%28even%29%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF12%3B%0A%7D%0A%2Elightable%2Dmaterial%2Ddark%2Elightable%2Dstriped%20tbody%20td%20%7B%0Aborder%3A%200%3B%0A%7D%0A%2Elightable%2Dmaterial%2Ddark%2Elightable%2Dstriped%20thead%20tr%3Alast%2Dchild%20th%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23FFFFFF12%3B%0A%7D%0A%2Elightable%2Dpaper%20%7B%0Awidth%3A%20100%25%3B%0Amargin%2Dbottom%3A%2010px%3B%0Acolor%3A%20%23444%3B%0A%7D%0A%2Elightable%2Dpaper%20tfoot%20tr%20td%20%7B%0Aborder%3A%200%3B%0A%7D%0A%2Elightable%2Dpaper%20tfoot%20tr%3Afirst%2Dchild%20td%20%7B%0Aborder%2Dtop%3A%201px%20solid%20%2300000020%3B%0A%7D%0A%2Elightable%2Dpaper%20thead%20tr%3Alast%2Dchild%20th%20%7B%0Acolor%3A%20%23666%3B%0Avertical%2Dalign%3A%20bottom%3B%0Aborder%2Dbottom%3A%201px%20solid%20%2300000020%3B%0Aline%2Dheight%3A%201%2E15em%3B%0Apadding%3A%2010px%205px%3B%0A%7D%0A%2Elightable%2Dpaper%20td%20%7B%0Avertical%2Dalign%3A%20middle%3B%0Aborder%2Dbottom%3A%201px%20solid%20%2300000010%3B%0Aline%2Dheight%3A%201%2E15em%3B%0Apadding%3A%207px%205px%3B%0A%7D%0A%2Elightable%2Dpaper%2Elightable%2Dhover%20tbody%20tr%3Ahover%20%7B%0Abackground%2Dcolor%3A%20%23F9EEC1%3B%0A%7D%0A%2Elightable%2Dpaper%2Elightable%2Dstriped%20tbody%20tr%3Anth%2Dchild%28even%29%20%7B%0Abackground%2Dcolor%3A%20%2300000008%3B%0A%7D%0A%2Elightable%2Dpaper%2Elightable%2Dstriped%20tbody%20td%20%7B%0Aborder%3A%200%3B%0A%7D%0A" rel="stylesheet" />
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+<script>$(document).ready(function(){
+    if (typeof $('[data-toggle="tooltip"]').tooltip === 'function') {
+        $('[data-toggle="tooltip"]').tooltip();
+    }
+    if ($('[data-toggle="popover"]').popover === 'function') {
+        $('[data-toggle="popover"]').popover();
+    }
+});
+</script>
+<style type="text/css">
+.lightable-minimal {
+border-collapse: separate;
+border-spacing: 16px 1px;
+width: 100%;
+margin-bottom: 10px;
+}
+.lightable-minimal td {
+margin-left: 5px;
+margin-right: 5px;
+}
+.lightable-minimal th {
+margin-left: 5px;
+margin-right: 5px;
+}
+.lightable-minimal thead tr:last-child th {
+border-bottom: 2px solid #00000050;
+empty-cells: hide;
+}
+.lightable-minimal tbody tr:first-child td {
+padding-top: 0.5em;
+}
+.lightable-minimal.lightable-hover tbody tr:hover {
+background-color: #f5f5f5;
+}
+.lightable-minimal.lightable-striped tbody tr:nth-child(even) {
+background-color: #f5f5f5;
+}
+.lightable-classic {
+border-top: 0.16em solid #111111;
+border-bottom: 0.16em solid #111111;
+width: 100%;
+margin-bottom: 10px;
+margin: 10px 5px;
+}
+.lightable-classic tfoot tr td {
+border: 0;
+}
+.lightable-classic tfoot tr:first-child td {
+border-top: 0.14em solid #111111;
+}
+.lightable-classic caption {
+color: #222222;
+}
+.lightable-classic td {
+padding-left: 5px;
+padding-right: 5px;
+color: #222222;
+}
+.lightable-classic th {
+padding-left: 5px;
+padding-right: 5px;
+font-weight: normal;
+color: #222222;
+}
+.lightable-classic thead tr:last-child th {
+border-bottom: 0.10em solid #111111;
+}
+.lightable-classic.lightable-hover tbody tr:hover {
+background-color: #F9EEC1;
+}
+.lightable-classic.lightable-striped tbody tr:nth-child(even) {
+background-color: #f5f5f5;
+}
+.lightable-classic-2 {
+border-top: 3px double #111111;
+border-bottom: 3px double #111111;
+width: 100%;
+margin-bottom: 10px;
+}
+.lightable-classic-2 tfoot tr td {
+border: 0;
+}
+.lightable-classic-2 tfoot tr:first-child td {
+border-top: 3px double #111111;
+}
+.lightable-classic-2 caption {
+color: #222222;
+}
+.lightable-classic-2 td {
+padding-left: 5px;
+padding-right: 5px;
+color: #222222;
+}
+.lightable-classic-2 th {
+padding-left: 5px;
+padding-right: 5px;
+font-weight: normal;
+color: #222222;
+}
+.lightable-classic-2 tbody tr:last-child td {
+border-bottom: 3px double #111111;
+}
+.lightable-classic-2 thead tr:last-child th {
+border-bottom: 1px solid #111111;
+}
+.lightable-classic-2.lightable-hover tbody tr:hover {
+background-color: #F9EEC1;
+}
+.lightable-classic-2.lightable-striped tbody tr:nth-child(even) {
+background-color: #f5f5f5;
+}
+.lightable-material {
+min-width: 100%;
+white-space: nowrap;
+table-layout: fixed;
+font-family: Roboto, sans-serif;
+border: 1px solid #EEE;
+border-collapse: collapse;
+margin-bottom: 10px;
+}
+.lightable-material tfoot tr td {
+border: 0;
+}
+.lightable-material tfoot tr:first-child td {
+border-top: 1px solid #EEE;
+}
+.lightable-material th {
+height: 56px;
+padding-left: 16px;
+padding-right: 16px;
+}
+.lightable-material td {
+height: 52px;
+padding-left: 16px;
+padding-right: 16px;
+border-top: 1px solid #eeeeee;
+}
+.lightable-material.lightable-hover tbody tr:hover {
+background-color: #f5f5f5;
+}
+.lightable-material.lightable-striped tbody tr:nth-child(even) {
+background-color: #f5f5f5;
+}
+.lightable-material.lightable-striped tbody td {
+border: 0;
+}
+.lightable-material.lightable-striped thead tr:last-child th {
+border-bottom: 1px solid #ddd;
+}
+.lightable-material-dark {
+min-width: 100%;
+white-space: nowrap;
+table-layout: fixed;
+font-family: Roboto, sans-serif;
+border: 1px solid #FFFFFF12;
+border-collapse: collapse;
+margin-bottom: 10px;
+background-color: #363640;
+}
+.lightable-material-dark tfoot tr td {
+border: 0;
+}
+.lightable-material-dark tfoot tr:first-child td {
+border-top: 1px solid #FFFFFF12;
+}
+.lightable-material-dark th {
+height: 56px;
+padding-left: 16px;
+padding-right: 16px;
+color: #FFFFFF60;
+}
+.lightable-material-dark td {
+height: 52px;
+padding-left: 16px;
+padding-right: 16px;
+color: #FFFFFF;
+border-top: 1px solid #FFFFFF12;
+}
+.lightable-material-dark.lightable-hover tbody tr:hover {
+background-color: #FFFFFF12;
+}
+.lightable-material-dark.lightable-striped tbody tr:nth-child(even) {
+background-color: #FFFFFF12;
+}
+.lightable-material-dark.lightable-striped tbody td {
+border: 0;
+}
+.lightable-material-dark.lightable-striped thead tr:last-child th {
+border-bottom: 1px solid #FFFFFF12;
+}
+.lightable-paper {
+width: 100%;
+margin-bottom: 10px;
+color: #444;
+}
+.lightable-paper tfoot tr td {
+border: 0;
+}
+.lightable-paper tfoot tr:first-child td {
+border-top: 1px solid #00000020;
+}
+.lightable-paper thead tr:last-child th {
+color: #666;
+vertical-align: bottom;
+border-bottom: 1px solid #00000020;
+line-height: 1.15em;
+padding: 10px 5px;
+}
+.lightable-paper td {
+vertical-align: middle;
+border-bottom: 1px solid #00000010;
+line-height: 1.15em;
+padding: 7px 5px;
+}
+.lightable-paper.lightable-hover tbody tr:hover {
+background-color: #F9EEC1;
+}
+.lightable-paper.lightable-striped tbody tr:nth-child(even) {
+background-color: #00000008;
+}
+.lightable-paper.lightable-striped tbody td {
+border: 0;
+}
+</style>
 
 <style type="text/css">
-  code{white-space: pre-wrap;}
-  span.smallcaps{font-variant: small-caps;}
-  span.underline{text-decoration: underline;}
-  div.column{display: inline-block; vertical-align: top; width: 50%;}
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  ul.task-list{list-style: none;}
-    </style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
 
 
 <style type="text/css">
-  code {
-    white-space: pre;
-  }
-  .sourceCode {
-    overflow: visible;
-  }
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
 </style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
@@ -53,55 +288,54 @@ pre > code.sourceCode { white-space: pre-wrap; }
 pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
-  { counter-reset: source-line 0; }
+{ counter-reset: source-line 0; }
 pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
+{ position: relative; left: -4em; counter-increment: source-line; }
 pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
 div.sourceCode
-  {   }
+{ }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
 </style>
 <script>
 // apply pandoc div.sourceCode style to pre.sourceCode instead
@@ -110,13 +344,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   for (var i = 0; i < sheets.length; i++) {
     if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
     try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
+    var j = 0;
+    while (j < rules.length) {
       var rule = rules[j];
       // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -128,29 +369,209 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <style type="text/css">
-/* for pandoc --citeproc since 2.11 */
+
 div.csl-bib-body { }
 div.csl-entry {
-  clear: both;
+clear: both;
 }
 .hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
+margin-left:2em;
+text-indent:-2em;
 }
 div.csl-left-margin {
-  min-width:2em;
-  float:left;
+min-width:2em;
+float:left;
 }
 div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
+margin-left:2em;
+padding-left:1em;
 }
 div.csl-indent {
-  margin-left: 2em;
+margin-left: 2em;
 }
 </style>
 
-<link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" type="text/css" />
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
 
 
 
@@ -162,52 +583,111 @@ div.csl-indent {
 
 
 
-<h1 class="title toc-ignore">Simulation Performance Criteria and MCSE</h1>
-<h4 class="date">2022-05-03</h4>
+<h1 class="title toc-ignore">Simulation Performance Criteria and
+MCSE</h1>
+<h4 class="date">2024-02-23</h4>
 
 
 <div id="TOC">
 <ul>
-<li><a href="#performance-criteria-and-mcse"><span class="toc-section-number">1</span> Performance Criteria and MCSE</a>
+<li><a href="#performance-criteria-and-mcse" id="toc-performance-criteria-and-mcse"><span class="toc-section-number">1</span> Performance Criteria and MCSE</a>
 <ul>
-<li><a href="#absolute-criteria"><span class="toc-section-number">1.1</span> Absolute Criteria</a>
+<li><a href="#absolute-criteria" id="toc-absolute-criteria"><span class="toc-section-number">1.1</span> Absolute Criteria</a>
 <ul>
-<li><a href="#example"><span class="toc-section-number">1.1.1</span> Example</a></li>
+<li><a href="#example" id="toc-example"><span class="toc-section-number">1.1.1</span> Example</a></li>
 </ul></li>
-<li><a href="#relative-criteria"><span class="toc-section-number">1.2</span> Relative Criteria</a>
+<li><a href="#relative-criteria" id="toc-relative-criteria"><span class="toc-section-number">1.2</span> Relative Criteria</a>
 <ul>
-<li><a href="#example-1"><span class="toc-section-number">1.2.1</span> Example</a></li>
+<li><a href="#example-1" id="toc-example-1"><span class="toc-section-number">1.2.1</span> Example</a></li>
 </ul></li>
-<li><a href="#relative-criteria-for-variance-estimators"><span class="toc-section-number">1.3</span> Relative Criteria for Variance Estimators</a>
+<li><a href="#relative-criteria-for-variance-estimators" id="toc-relative-criteria-for-variance-estimators"><span class="toc-section-number">1.3</span> Relative Criteria for Variance
+Estimators</a>
 <ul>
-<li><a href="#example-2"><span class="toc-section-number">1.3.1</span> Example</a></li>
+<li><a href="#example-2" id="toc-example-2"><span class="toc-section-number">1.3.1</span> Example</a></li>
 </ul></li>
-<li><a href="#hypothesis-testing-and-confidence-intervals"><span class="toc-section-number">1.4</span> Hypothesis Testing and Confidence Intervals</a>
+<li><a href="#hypothesis-testing-and-confidence-intervals" id="toc-hypothesis-testing-and-confidence-intervals"><span class="toc-section-number">1.4</span> Hypothesis Testing and Confidence
+Intervals</a>
 <ul>
-<li><a href="#example-3"><span class="toc-section-number">1.4.1</span> Example</a></li>
+<li><a href="#example-3" id="toc-example-3"><span class="toc-section-number">1.4.1</span> Example</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#how-to-evaluate-mcse"><span class="toc-section-number">2</span> How to Evaluate MCSE</a></li>
-<li><a href="#references">References</a></li>
+<li><a href="#how-to-evaluate-mcse" id="toc-how-to-evaluate-mcse"><span class="toc-section-number">2</span> How to Evaluate MCSE</a></li>
+<li><a href="#references" id="toc-references">References</a></li>
 </ul>
 </div>
 
-<p>Monte Carlo simulations are computer experiments designed to study the performance of statistical methods under known data-generating conditions <span class="citation">(Morris, White, &amp; Crowther, 2019)</span>. Methodologists use simulations to examine questions such as: (1) how does ordinary least squares (OLS) regression perform if errors are heteroskedastic? (2) how does the presence of missing data affect treatment effect estimates from a propensity score analysis? (3) how does cluster robust variance estimation perform when the number of clusters is small? To answer such questions, we conduct experiments by simulating thousands of datasets based on pseudo-random sampling <span class="citation">(Morris, White, &amp; Crowther, 2019)</span>. We generate datasets under known conditions. For example, we can generate data where the errors are heteroskedastic or there is missing data present following Missing at Random (MAR) mechanism. Then, we apply statistical methods, like OLS or propensity score estimation using logistic regression, to each of the datasets and extract results like regression coefficients, p-values, and confidence intervals. We then analyze the performance of these estimation methods using criteria such as bias, Type 1 error rate, or root mean squared error. Performance measures from simulation studies are estimates, based on a finite number of repeated samples from a data-generating process, and thus include some random error. When interpreting performance measures, it is important to consider how large the estimation error is. This is typically quantified as Monte Carlo standard error (MCSE).</p>
-<p>The goal of <code>simhelpers</code> is to assist in running simulation studies. This package provides a set of functions that calculate various performance measures and associated MCSE. This vignette focuses on the set of functions for calculating performance measures. Below, we explain three major categories of performance criteria: (1) absolute criteria, (2) relative criteria, and (3) criteria to evaluate hypothesis testing. We provide formulas used to calculate the performance measures and MCSE and demonstrate how to use the functions in the <code>simhelpers</code> package.</p>
-<p>The notation and explanations of the performance measures largely follow notes from Dr. James Pustejovsky’s <a href="https://www.jepusto.com/teaching/daspir/">Data Analysis, Simulation and Programming in R course (Spring, 2019)</a>.</p>
+<p>Monte Carlo simulations are computer experiments designed to study
+the performance of statistical methods under known data-generating
+conditions <span class="citation">(Morris, White, &amp; Crowther,
+2019)</span>. Methodologists use simulations to examine questions such
+as: (1) how does ordinary least squares (OLS) regression perform if
+errors are heteroskedastic? (2) how does the presence of missing data
+affect treatment effect estimates from a propensity score analysis? (3)
+how does cluster robust variance estimation perform when the number of
+clusters is small? To answer such questions, we conduct experiments by
+simulating thousands of datasets based on pseudo-random sampling <span class="citation">(Morris et al., 2019)</span>. We generate datasets
+under known conditions. For example, we can generate data where the
+errors are heteroskedastic or there is missing data present following
+Missing at Random (MAR) mechanism. Then, we apply statistical methods,
+like OLS or propensity score estimation using logistic regression, to
+each of the datasets and extract results like regression coefficients,
+p-values, and confidence intervals. We then analyze the performance of
+these estimation methods using criteria such as bias, Type 1 error rate,
+or root mean squared error. Performance measures from simulation studies
+are estimates, based on a finite number of repeated samples from a
+data-generating process, and thus include some random error. When
+interpreting performance measures, it is important to consider how large
+the estimation error is. This is typically quantified as Monte Carlo
+standard error (MCSE).</p>
+<p>The goal of <code>simhelpers</code> is to assist in running
+simulation studies. This package provides a set of functions that
+calculate various performance measures and associated MCSE. This
+vignette focuses on the set of functions for calculating performance
+measures. Below, we explain three major categories of performance
+criteria: (1) absolute criteria, (2) relative criteria, and (3) criteria
+to evaluate hypothesis testing. We provide formulas used to calculate
+the performance measures and MCSE and demonstrate how to use the
+functions in the <code>simhelpers</code> package.</p>
+<p>The notation and explanations of the performance measures largely
+follow notes from Dr. James Pustejovsky’s <a href="https://www.jepusto.com/teaching/daspir/">Data Analysis,
+Simulation and Programming in R course (Spring, 2019)</a>.</p>
 <div id="performance-criteria-and-mcse" class="section level1" number="1">
-<h1 number="1"><span class="header-section-number">1</span> Performance Criteria and MCSE</h1>
+<h1><span class="header-section-number">1</span> Performance Criteria
+and MCSE</h1>
 <div id="absolute-criteria" class="section level2" number="1.1">
-<h2 number="1.1"><span class="header-section-number">1.1</span> Absolute Criteria</h2>
-<p>Bias characterizes whether an estimator tends to lie above or below the true parameter, on average. Variance characterizes the precision of an estimator, as the average squared deviation of the estimator from its average. Note that variance is the inverse of precision. Therefore, the higher the variance, the lower the precision. Mean squared error (MSE) and root mean squared error (RMSE) characterize the accuracy of the estimates. MSE and RMSE measure how far off, on average, an estimator is from the true parameter. Absolute criteria are in the same scale as the estimate. MSE is in squared deviation scale and RMSE is in the scale of the estimates.</p>
-<p>Let <span class="math inline">\(T\)</span> denote an estimator for a parameter <span class="math inline">\(\theta\)</span>. By running a simulation study, we obtain <span class="math inline">\(K\)</span> estimates <span class="math inline">\(T_1,...,T_K\)</span> (or realizations of the estimator) for each data generating condition. We can calculate the following sample statistics for the estimates:</p>
+<h2><span class="header-section-number">1.1</span> Absolute
+Criteria</h2>
+<p>Bias characterizes whether an estimator tends to lie above or below
+the true parameter, on average. Variance characterizes the precision of
+an estimator, as the average squared deviation of the estimator from its
+average. Note that variance is the inverse of precision. Therefore, the
+higher the variance, the lower the precision. Mean squared error (MSE)
+and root mean squared error (RMSE) characterize the accuracy of the
+estimates. MSE and RMSE measure how far off, on average, an estimator is
+from the true parameter. Absolute criteria are in the same scale as the
+estimate. MSE is in squared deviation scale and RMSE is in the scale of
+the estimates.</p>
+<p>Let <span class="math inline">\(T\)</span> denote an estimator for a
+parameter <span class="math inline">\(\theta\)</span>. By running a
+simulation study, we obtain <span class="math inline">\(K\)</span>
+estimates <span class="math inline">\(T_1,...,T_K\)</span> (or
+realizations of the estimator) for each data generating condition. We
+can calculate the following sample statistics for the estimates:</p>
 <ul>
-<li>Sample mean: <span class="math inline">\(\bar{T} = \frac{1}{K}\sum_{k=1}^K T_k\)</span></li>
-<li>Sample variance: <span class="math inline">\(S_T^2 = \frac{1}{K - 1}\sum_{k=1}^K \left(T_k - \bar{T}\right)^2\)</span></li>
-<li>Sample skewness (standardized): <span class="math inline">\(g_T = \frac{1}{K S_T^3}\sum_{k=1}^K \left(T_k - \bar{T}\right)^3\)</span></li>
-<li>Sample kurtosis (standardized): <span class="math inline">\(k_T = \frac{1}{K S_T^4} \sum_{k=1}^K \left(T_k - \bar{T}\right)^4\)</span></li>
+<li>Sample mean: <span class="math inline">\(\bar{T} =
+\frac{1}{K}\sum_{k=1}^K T_k\)</span></li>
+<li>Sample variance: <span class="math inline">\(S_T^2 = \frac{1}{K -
+1}\sum_{k=1}^K \left(T_k - \bar{T}\right)^2\)</span></li>
+<li>Sample skewness (standardized): <span class="math inline">\(g_T =
+\frac{1}{K S_T^3}\sum_{k=1}^K \left(T_k - \bar{T}\right)^3\)</span></li>
+<li>Sample kurtosis (standardized): <span class="math inline">\(k_T =
+\frac{1}{K S_T^4} \sum_{k=1}^K \left(T_k -
+\bar{T}\right)^4\)</span></li>
 </ul>
-<p>Table 1 below shows each of the performance criteria, its interpretation, its formal definition, how the criterion is estimated in a simulation study, and the formula for the MCSE of the estimated performance measure.</p>
+<p>Table 1 below shows each of the performance criteria, its
+interpretation, its formal definition, how the criterion is estimated in
+a simulation study, and the formula for the MCSE of the estimated
+performance measure.</p>
 <table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
 <caption>
 Table 1. Absolute Performance Criteria
@@ -257,7 +737,8 @@ Variance
 Precision
 </td>
 <td style="text-align:left;">
-<span class="math inline">\(\text{E}\left[(T - \text{E}(T))^2\right]\)</span>
+<span class="math inline">\(\text{E}\left[(T -
+\text{E}(T))^2\right]\)</span>
 </td>
 <td style="text-align:left;">
 <span class="math inline">\(S_T^2\)</span>
@@ -277,10 +758,13 @@ Accuracy
 <span class="math inline">\(\text{E}\left[(T - \theta)^2\right]\)</span>
 </td>
 <td style="text-align:left;">
-<span class="math inline">\(\frac{1}{K}\sum_{k=1}^{K}\left(T_k - \theta\right)^2\)</span>
+<span class="math inline">\(\frac{1}{K}\sum_{k=1}^{K}\left(T_k -
+\theta\right)^2\)</span>
 </td>
 <td style="text-align:left;">
-<span class="math inline">\(\sqrt{\frac{1}{K}\left[S_T^4 (k_T - 1) + 4 S_T^3 g_T(\bar{T} - \theta) + 4 S_T^2 (\bar{T} - \theta)^2\right]}\)</span>
+<span class="math inline">\(\sqrt{\frac{1}{K}\left[S_T^4 (k_T - 1) + 4
+S_T^3 g_T(\bar{T} - \theta) + 4 S_T^2 (\bar{T} -
+\theta)^2\right]}\)</span>
 </td>
 </tr>
 <tr>
@@ -291,62 +775,124 @@ RMSE
 Accuracy
 </td>
 <td style="text-align:left;">
-<span class="math inline">\(\sqrt{\text{E}\left[(T - \theta)^2\right]}\)</span>
+<span class="math inline">\(\sqrt{\text{E}\left[(T -
+\theta)^2\right]}\)</span>
 </td>
 <td style="text-align:left;">
-<span class="math inline">\(\sqrt{\frac{1}{K}\sum_{k=1}^{K}\left(T_k - \theta\right)^2}\)</span>
+<span class="math inline">\(\sqrt{\frac{1}{K}\sum_{k=1}^{K}\left(T_k -
+\theta\right)^2}\)</span>
 </td>
 <td style="text-align:left;">
-<span class="math inline">\(\sqrt{\frac{K - 1}{K} \sum_{j=1}^K \left(RMSE_{(j)} - RMSE\right)^2}\)</span>
+<span class="math inline">\(\sqrt{\frac{K - 1}{K} \sum_{j=1}^K
+\left(RMSE_{(j)} - RMSE\right)^2}\)</span>
 </td>
 </tr>
 </tbody>
 </table>
-<p>The equation for the MCSE of RMSE is derived using the jack-knife technique, which involves excluding a replicate <span class="math inline">\(j\)</span> and calculating RMSE <span class="citation">(Efron &amp; Stein, 1981)</span>. The formula for RMSE is:</p>
-<p><span class="math display">\[\sqrt{\frac{1}{K}\sum_{k=1}^{K}\left(T_k - \theta\right)^2}\]</span></p>
+<p>The equation for the MCSE of RMSE is derived using the jack-knife
+technique, which involves excluding a replicate <span class="math inline">\(j\)</span> and calculating RMSE <span class="citation">(Efron &amp; Stein, 1981)</span>. The formula for RMSE
+is:</p>
+<p><span class="math display">\[\sqrt{\frac{1}{K}\sum_{k=1}^{K}\left(T_k
+- \theta\right)^2}\]</span></p>
 <p>This is approximately equivalent to:</p>
-<p><span class="math display">\[RMSE = \sqrt{(\bar{T} - \theta)^2 + S^2_T}\]</span></p>
+<p><span class="math display">\[RMSE = \sqrt{(\bar{T} - \theta)^2 +
+S^2_T}\]</span></p>
 <p>The jack-knife RMSE will be calculated as:</p>
-<p><span class="math display">\[RMSE_{(j)}  = \sqrt{(\bar{T}_{(j)} - \theta)^2 + S^2_{T(j)}}\]</span></p>
-<p>Here <span class="math inline">\(\bar{T}_{(j)}\)</span> and <span class="math inline">\(S^2_{T(j)}\)</span> indicate the mean and variance of the estimates leaving out replicate <span class="math inline">\(j\)</span>. Instead of calculating each jack-knife estimate, we use algebraic tricks to calculate <span class="math inline">\(\bar{T}_{(j)}\)</span> and <span class="math inline">\(S^2_{T(j)}\)</span> as follows:</p>
-<p><span class="math display">\[\bar{T}_{(j)} = \frac{1}{K-1} \left(K \bar{T} - T_j\right)\]</span></p>
-<p><span class="math display">\[S_{T(j)}^2 = \frac{1}{K - 2} \left[(K - 1) S_T^2 - \frac{K}{K - 1}\left(T_j - \bar{T}\right)^2\right]\]</span></p>
+<p><span class="math display">\[RMSE_{(j)}  = \sqrt{(\bar{T}_{(j)} -
+\theta)^2 + S^2_{T(j)}}\]</span></p>
+<p>Here <span class="math inline">\(\bar{T}_{(j)}\)</span> and <span class="math inline">\(S^2_{T(j)}\)</span> indicate the mean and variance
+of the estimates leaving out replicate <span class="math inline">\(j\)</span>. Instead of calculating each jack-knife
+estimate, we use algebraic tricks to calculate <span class="math inline">\(\bar{T}_{(j)}\)</span> and <span class="math inline">\(S^2_{T(j)}\)</span> as follows:</p>
+<p><span class="math display">\[\bar{T}_{(j)} = \frac{1}{K-1} \left(K
+\bar{T} - T_j\right)\]</span></p>
+<p><span class="math display">\[S_{T(j)}^2 = \frac{1}{K - 2} \left[(K -
+1) S_T^2 - \frac{K}{K - 1}\left(T_j -
+\bar{T}\right)^2\right]\]</span></p>
 <p>Then, the jack-knife MCSE of RMSE will be calculated as:</p>
-<p><span class="math display">\[MCSE_{RMSE(JK)}  = \sqrt{\frac{K -1}{K}\sum_{j=1}^K  \left(RMSE_{(j)} - RMSE\right)^2}\]</span></p>
+<p><span class="math display">\[MCSE_{RMSE(JK)}  = \sqrt{\frac{K
+-1}{K}\sum_{j=1}^K  \left(RMSE_{(j)} - RMSE\right)^2}\]</span></p>
 <div id="example" class="section level3" number="1.1.1">
-<h3 number="1.1.1"><span class="header-section-number">1.1.1</span> Example</h3>
-<p>We use the <code>welch_res</code> dataset included in the package. It contains the results from an example simulation study comparing the heteroskedasticity-robust Welch t-test to the usual two-sample t-test assuming equal variances. The code used to generate the data and derive results can be found <a href="https://github.com/meghapsimatrix/simhelpers/blob/master/data-raw/welch_res_dat.R">here</a>. We varied the sample sizes per group. We set the sample size of Group 1 to 50 and we varied sample size of Group 2 to be 50 and 70. We varied the mean difference parameter when generating data for two groups. We set the values to 0, 0.5, 1 and 2. We generated the data with slightly unequal variances. With each simulated dataset, we ran the usual t-test, which assumes homogeneity of variance, and we also ran Welch t-test, which does not assume homogeneity of variance. We extracted the estimates (mean differences), variances of the estimates, p-values, and the lower and upper bounds of the confidence intervals.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(simhelpers)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>welch_res <span class="sc">%&gt;%</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glimpse</span>()</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Rows: 16,000</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Columns: 11</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ n1          &lt;dbl&gt; 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50…</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ n2          &lt;dbl&gt; 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50…</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ mean_diff   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ iterations  &lt;dbl&gt; 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000…</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ seed        &lt;dbl&gt; 204809087, 204809087, 204809087, 204809087, 204809087, 204…</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ method      &lt;chr&gt; &quot;t-test&quot;, &quot;Welch t-test&quot;, &quot;t-test&quot;, &quot;Welch t-test&quot;, &quot;t-tes…</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ est         &lt;dbl&gt; 0.025836000, 0.025836000, 0.005158587, 0.005158587, -0.079…</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ var         &lt;dbl&gt; 0.09543914, 0.09543914, 0.08481717, 0.08481717, 0.08179330…</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ p_val       &lt;dbl&gt; 0.9335212, 0.9335804, 0.9859039, 0.9859109, 0.7807543, 0.7…</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ lower_bound &lt;dbl&gt; -0.5872300, -0.5899041, -0.5727856, -0.5741984, -0.6473703…</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ upper_bound &lt;dbl&gt; 0.6389020, 0.6415761, 0.5831027, 0.5845155, 0.4877263, 0.4…</span></span></code></pre></div>
-<p>Below, we calculate the absolute performance criteria for the estimates of the mean differences. We present the results by sample sizes, mean difference, and the t-test method. The <code>calc_absolute()</code> function is designed to work with the <a href="https://tidyeval.tidyverse.org/index.html"><code>tidyeval</code></a> workflow <span class="citation">(Wickham et al., 2019)</span>. The first argument, <code>res_dat</code>, requires a data frame or a tibble containing the results from a simulation study. The second argument, <code>estimates</code>, requires the name of the column containing the estimates like mean difference or regression coefficients. The third argument, <code>true_param</code>, requires the name of the column containing the true parameters. The fourth argument, <code>perfm_criteria</code>, lets the user specify which criteria to evaluate. The criteria can be specified using a character or character vector. If the user only wants bias, they can specify <code>perfm_criteria = &quot;bias&quot;</code>. If the user wants bias and root mean squared error, they can specify <code>perfm_criteria = c(&quot;bias&quot;, &quot;rmse&quot;)</code>. By default, the function returns bias, variance, mean squared error (mse), and root mean squared error (rmse), <code>perfm_criteria = c(&quot;bias&quot;, &quot;variance&quot;, &quot;mse&quot;, &quot;rmse&quot;)</code>. In the example below, we ask for all the available criteria.</p>
-<p>We calculate the absolute performance measures only for the conventional t-test results because the mean difference is identical for the Welch t-test. We use <a href="https://dplyr.tidyverse.org/index.html"><code>dplyr</code></a> syntax to group by the sample sizes and mean difference that were used to generate the data. We provide examples using <a href="https://dplyr.tidyverse.org/reference/do.html"><code>do()</code></a> and <a href="https://dplyr.tidyverse.org/reference/group_map.html"><code>group_modify()</code></a> to run <code>calc_absolute()</code> on results for each combination of the conditions. Results are rounded to five decimal places.</p>
-<p>If there are any convergence issues with estimation, please make sure to <a href="https://meghapsimatrix.github.io/simhelpers/articles/simulation_workflow.html#convergence-issues">write your estimation function to output <code>NA</code> for the values of the point estimates, variance estimates, p-values, or confidence interval estimates</a>. The functions in the <code>simhelpers</code> package will calculate performance criteria and MCSE after deleting any missing estimates and will output the number of iterations, <code>K</code>, which will exclude iterations with <code>NA</code> values for estimates. Note that <code>K</code> may differ by condition.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using do()</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>welch_res <span class="sc">%&gt;%</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(method <span class="sc">==</span> <span class="st">&quot;t-test&quot;</span>) <span class="sc">%&gt;%</span> <span class="co"># filter just conventional t-test res</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(n1, n2, mean_diff) <span class="sc">%&gt;%</span> <span class="co"># grouping </span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">do</span>(<span class="fu">calc_absolute</span>(., <span class="at">estimates =</span> est, <span class="at">true_param =</span> mean_diff)) <span class="sc">%&gt;%</span> <span class="co"># run the function</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">5</span>) <span class="co"># create a kable table </span></span></code></pre></div>
+<h3><span class="header-section-number">1.1.1</span> Example</h3>
+<p>We use the <code>welch_res</code> dataset included in the package. It
+contains the results from an example simulation study comparing the
+heteroskedasticity-robust Welch t-test to the usual two-sample t-test
+assuming equal variances. The code used to generate the data and derive
+results can be found <a href="https://github.com/meghapsimatrix/simhelpers/blob/master/data-raw/welch_res_dat.R">here</a>.
+We varied the sample sizes per group. We set the sample size of Group 1
+to 50 and we varied sample size of Group 2 to be 50 and 70. We varied
+the mean difference parameter when generating data for two groups. We
+set the values to 0, 0.5, 1 and 2. We generated the data with slightly
+unequal variances. With each simulated dataset, we ran the usual t-test,
+which assumes homogeneity of variance, and we also ran Welch t-test,
+which does not assume homogeneity of variance. We extracted the
+estimates (mean differences), variances of the estimates, p-values, and
+the lower and upper bounds of the confidence intervals.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(simhelpers)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>welch_res <span class="sc">%&gt;%</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>  <span class="fu">glimpse</span>()</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="co">#&gt; Rows: 16,000</span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="co">#&gt; Columns: 11</span></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="co">#&gt; $ n1          &lt;dbl&gt; 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50…</span></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="co">#&gt; $ n2          &lt;dbl&gt; 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50…</span></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a><span class="co">#&gt; $ mean_diff   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…</span></span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a><span class="co">#&gt; $ iterations  &lt;dbl&gt; 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000…</span></span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="co">#&gt; $ seed        &lt;dbl&gt; 204809087, 204809087, 204809087, 204809087, 204809087, 204…</span></span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a><span class="co">#&gt; $ method      &lt;chr&gt; &quot;t-test&quot;, &quot;Welch t-test&quot;, &quot;t-test&quot;, &quot;Welch t-test&quot;, &quot;t-tes…</span></span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a><span class="co">#&gt; $ est         &lt;dbl&gt; 0.025836000, 0.025836000, 0.005158587, 0.005158587, -0.079…</span></span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a><span class="co">#&gt; $ var         &lt;dbl&gt; 0.09543914, 0.09543914, 0.08481717, 0.08481717, 0.08179330…</span></span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a><span class="co">#&gt; $ p_val       &lt;dbl&gt; 0.9335212, 0.9335804, 0.9859039, 0.9859109, 0.7807543, 0.7…</span></span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a><span class="co">#&gt; $ lower_bound &lt;dbl&gt; -0.5872300, -0.5899041, -0.5727856, -0.5741984, -0.6473703…</span></span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a><span class="co">#&gt; $ upper_bound &lt;dbl&gt; 0.6389020, 0.6415761, 0.5831027, 0.5845155, 0.4877263, 0.4…</span></span></code></pre></div>
+<p>Below, we calculate the absolute performance criteria for the
+estimates of the mean differences. We present the results by sample
+sizes, mean difference, and the t-test method. The
+<code>calc_absolute()</code> function is designed to work with the <a href="https://www.tidyverse.org/"><code>tidyeval</code></a> workflow
+<span class="citation">(Wickham et al., 2019)</span>. The first
+argument, <code>res_dat</code>, requires a data frame or a tibble
+containing the results from a simulation study. The second argument,
+<code>estimates</code>, requires the name of the column containing the
+estimates like mean difference or regression coefficients. The third
+argument, <code>true_param</code>, requires the name of the column
+containing the true parameters. The fourth argument,
+<code>perfm_criteria</code>, lets the user specify which criteria to
+evaluate. The criteria can be specified using a character or character
+vector. If the user only wants bias, they can specify
+<code>perfm_criteria = &quot;bias&quot;</code>. If the user wants bias and root
+mean squared error, they can specify
+<code>perfm_criteria = c(&quot;bias&quot;, &quot;rmse&quot;)</code>. By default, the
+function returns bias, variance, mean squared error (mse), and root mean
+squared error (rmse),
+<code>perfm_criteria = c(&quot;bias&quot;, &quot;variance&quot;, &quot;mse&quot;, &quot;rmse&quot;)</code>. In
+the example below, we ask for all the available criteria.</p>
+<p>We calculate the absolute performance measures only for the
+conventional t-test results because the mean difference is identical for
+the Welch t-test. We use <a href="https://dplyr.tidyverse.org/index.html"><code>dplyr</code></a>
+syntax to group by the sample sizes and mean difference that were used
+to generate the data. We provide examples using <a href="https://dplyr.tidyverse.org/reference/do.html"><code>do()</code></a>
+and <a href="https://dplyr.tidyverse.org/reference/group_map.html"><code>group_modify()</code></a>
+to run <code>calc_absolute()</code> on results for each combination of
+the conditions. Results are rounded to five decimal places.</p>
+<p>If there are any convergence issues with estimation, please make sure
+to <a href="https://meghapsimatrix.github.io/simhelpers/articles/simulation_workflow.html#convergence-issues">write
+your estimation function to output <code>NA</code> for the values of the
+point estimates, variance estimates, p-values, or confidence interval
+estimates</a>. The functions in the <code>simhelpers</code> package will
+calculate performance criteria and MCSE after deleting any missing
+estimates and will output the number of iterations, <code>K</code>,
+which will exclude iterations with <code>NA</code> values for estimates.
+Note that <code>K</code> may differ by condition.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># using do()</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>welch_res <span class="sc">%&gt;%</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>  <span class="fu">filter</span>(method <span class="sc">==</span> <span class="st">&quot;t-test&quot;</span>) <span class="sc">%&gt;%</span> <span class="co"># filter just conventional t-test res</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>  <span class="fu">group_by</span>(n1, n2, mean_diff) <span class="sc">%&gt;%</span> <span class="co"># grouping </span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>  <span class="fu">do</span>(<span class="fu">calc_absolute</span>(., <span class="at">estimates =</span> est, <span class="at">true_param =</span> mean_diff)) <span class="sc">%&gt;%</span> <span class="co"># run the function</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">5</span>) <span class="co"># create a kable table </span></span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -360,7 +906,7 @@ n2
 mean_diff
 </th>
 <th style="text-align:right;">
-K
+K_absolute
 </th>
 <th style="text-align:right;">
 bias
@@ -695,13 +1241,13 @@ rmse_mcse
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using group_modify()</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>welch_res <span class="sc">%&gt;%</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(method <span class="sc">==</span> <span class="st">&quot;t-test&quot;</span>) <span class="sc">%&gt;%</span> <span class="co"># filter just conventional t-test res</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">params =</span> mean_diff) <span class="sc">%&gt;%</span> <span class="co"># group_modify cannot take in a group column as an argument</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(n1, n2, mean_diff) <span class="sc">%&gt;%</span> <span class="co"># grouping </span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_modify</span>(<span class="sc">~</span> <span class="fu">calc_absolute</span>(.x, <span class="at">estimates =</span> est, <span class="at">true_param =</span> params)) <span class="sc">%&gt;%</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># using group_modify()</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>welch_res <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  <span class="fu">filter</span>(method <span class="sc">==</span> <span class="st">&quot;t-test&quot;</span>) <span class="sc">%&gt;%</span> <span class="co"># filter just conventional t-test res</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">params =</span> mean_diff) <span class="sc">%&gt;%</span> <span class="co"># group_modify cannot take in a group column as an argument</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>  <span class="fu">group_by</span>(n1, n2, mean_diff) <span class="sc">%&gt;%</span> <span class="co"># grouping </span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>  <span class="fu">group_modify</span>(<span class="sc">~</span> <span class="fu">calc_absolute</span>(.x, <span class="at">estimates =</span> est, <span class="at">true_param =</span> params)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">5</span>)</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -715,7 +1261,7 @@ n2
 mean_diff
 </th>
 <th style="text-align:right;">
-K
+K_absolute
 </th>
 <th style="text-align:right;">
 bias
@@ -1053,14 +1599,27 @@ rmse_mcse
 </div>
 </div>
 <div id="relative-criteria" class="section level2" number="1.2">
-<h2 number="1.2"><span class="header-section-number">1.2</span> Relative Criteria</h2>
-<p>Relative criteria can be useful for describing an estimator’s performance, especially if the performance varies in proportion to the true value of the target parameter. It can be only used when <span class="math inline">\(|\theta| &gt; 0\)</span> as we cannot divide by <span class="math inline">\(0\)</span> <span class="citation">(Morris, White, &amp; Crowther, 2019)</span>.</p>
-<p>To derive the MCSE for relative RMSE, we again used the jack-knife technique. The formula to calculate relative RMSE is:</p>
-<p><span class="math display">\[rRMSE = \sqrt{\frac{(\bar{T} - \theta)^2 + S_T^2}{\theta^2}}\]</span></p>
+<h2><span class="header-section-number">1.2</span> Relative
+Criteria</h2>
+<p>Relative criteria can be useful for describing an estimator’s
+performance, especially if the performance varies in proportion to the
+true value of the target parameter. It can be only used when <span class="math inline">\(|\theta| &gt; 0\)</span> as we cannot divide by
+<span class="math inline">\(0\)</span> <span class="citation">(Morris et
+al., 2019)</span>.</p>
+<p>To derive the MCSE for relative RMSE, we again used the jack-knife
+technique. The formula to calculate relative RMSE is:</p>
+<p><span class="math display">\[rRMSE = \sqrt{\frac{(\bar{T} - \theta)^2
++ S_T^2}{\theta^2}}\]</span></p>
 <p>The jack-knife RMSE will be calculated as:</p>
-<p><span class="math display">\[rRMSE_{(j)}  = \sqrt{\frac{(\bar{T}_{(j)} - \theta)^2 + S_{T(j)}^2}{\theta^2}}\]</span></p>
-<p>Here <span class="math inline">\(\bar{T}_{(j)}\)</span> and <span class="math inline">\(S^2_{T(j)}\)</span> are calculated as specified above when we described the algebra trick to estimate these values. The MCSE is then calculated as specified in the table below.</p>
-<p>Table 2 below shows each of the relative performance criteria, its interpretation, its formal definition, how the criterion is estimated in a simulation study, and its MCSE formula.</p>
+<p><span class="math display">\[rRMSE_{(j)}  =
+\sqrt{\frac{(\bar{T}_{(j)} - \theta)^2 +
+S_{T(j)}^2}{\theta^2}}\]</span></p>
+<p>Here <span class="math inline">\(\bar{T}_{(j)}\)</span> and <span class="math inline">\(S^2_{T(j)}\)</span> are calculated as specified
+above when we described the algebra trick to estimate these values. The
+MCSE is then calculated as specified in the table below.</p>
+<p>Table 2 below shows each of the relative performance criteria, its
+interpretation, its formal definition, how the criterion is estimated in
+a simulation study, and its MCSE formula.</p>
 <table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
 <caption>
 Table 2. Relative Performance Criteria
@@ -1110,13 +1669,17 @@ Relative MSE
 Accuracy
 </td>
 <td style="text-align:left;">
-<span class="math inline">\(\text{E}\left[(T - \theta)^2\right]/ \theta^2\)</span>
+<span class="math inline">\(\text{E}\left[(T - \theta)^2\right]/
+\theta^2\)</span>
 </td>
 <td style="text-align:left;">
-<span class="math inline">\(\frac{(\bar{T} - \theta)^2 + S_T^2}{\theta^2}\)</span>
+<span class="math inline">\(\frac{(\bar{T} - \theta)^2 +
+S_T^2}{\theta^2}\)</span>
 </td>
 <td style="text-align:left;">
-<span class="math inline">\(\sqrt{\frac{1}{K\theta^2}\left[S_T^4 (k_T - 1) + 4 S_T^3 g_T(\bar{T} - \theta) + 4 S_T^2 (\bar{T} - \theta)^2\right]}\)</span>
+<span class="math inline">\(\sqrt{\frac{1}{K\theta^2}\left[S_T^4 (k_T -
+1) + 4 S_T^3 g_T(\bar{T} - \theta) + 4 S_T^2 (\bar{T} -
+\theta)^2\right]}\)</span>
 </td>
 </tr>
 <tr>
@@ -1127,27 +1690,37 @@ Relative RMSE
 Accuracy
 </td>
 <td style="text-align:left;">
-<span class="math inline">\(\sqrt{\text{E}\left[(T - \theta)^2\right]/ \theta^2}\)</span>
+<span class="math inline">\(\sqrt{\text{E}\left[(T - \theta)^2\right]/
+\theta^2}\)</span>
 </td>
 <td style="text-align:left;">
-<span class="math inline">\(\sqrt{\frac{(\bar{T} - \theta)^2 + S_T^2}{\theta^2}}\)</span>
+<span class="math inline">\(\sqrt{\frac{(\bar{T} - \theta)^2 +
+S_T^2}{\theta^2}}\)</span>
 </td>
 <td style="text-align:left;">
-<span class="math inline">\(\sqrt{\frac{K - 1}{K} \sum_{j=1}^K \left(rRMSE_{(j)} - rRMSE)^2\right)}\)</span>
+<span class="math inline">\(\sqrt{\frac{K - 1}{K} \sum_{j=1}^K
+\left(rRMSE_{(j)} - rRMSE)^2\right)}\)</span>
 </td>
 </tr>
 </tbody>
 </table>
 <div id="example-1" class="section level3" number="1.2.1">
-<h3 number="1.2.1"><span class="header-section-number">1.2.1</span> Example</h3>
-<p>Below, we calculate the relative criteria for the mean difference estimates. Note that when the mean difference is 0, the relative measures cannot be calculated and the function returns <code>NA</code> values. The syntax for <code>calc_relative()</code> is similar to the one that we used earlier for <code>calc_absolute()</code>. The <code>perfm_criteria</code> argument allows the user to specify which criteria to evaluate: <code>perfm_criteria = c(&quot;relative bias&quot;, &quot;relative mse&quot;, &quot;relative rmse&quot;)</code>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using group_modify()</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>welch_res <span class="sc">%&gt;%</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(method <span class="sc">==</span> <span class="st">&quot;t-test&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">params =</span> mean_diff) <span class="sc">%&gt;%</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(n1, n2, mean_diff) <span class="sc">%&gt;%</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_modify</span>(<span class="sc">~</span> <span class="fu">calc_relative</span>(.x, <span class="at">estimates =</span> est, <span class="at">true_param =</span> params)) <span class="sc">%&gt;%</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">5</span>)</span></code></pre></div>
+<h3><span class="header-section-number">1.2.1</span> Example</h3>
+<p>Below, we calculate the relative criteria for the mean difference
+estimates. Note that when the mean difference is 0, the relative
+measures cannot be calculated and the function returns <code>NA</code>
+values. The syntax for <code>calc_relative()</code> is similar to the
+one that we used earlier for <code>calc_absolute()</code>. The
+<code>perfm_criteria</code> argument allows the user to specify which
+criteria to evaluate:
+<code>perfm_criteria = c(&quot;relative bias&quot;, &quot;relative mse&quot;, &quot;relative rmse&quot;)</code>.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># using group_modify()</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>welch_res <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  <span class="fu">filter</span>(method <span class="sc">==</span> <span class="st">&quot;t-test&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">params =</span> mean_diff) <span class="sc">%&gt;%</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>  <span class="fu">group_by</span>(n1, n2, mean_diff) <span class="sc">%&gt;%</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>  <span class="fu">group_modify</span>(<span class="sc">~</span> <span class="fu">calc_relative</span>(.x, <span class="at">estimates =</span> est, <span class="at">true_param =</span> params)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">5</span>)</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -1161,7 +1734,7 @@ n2
 mean_diff
 </th>
 <th style="text-align:right;">
-K
+K_relative
 </th>
 <th style="text-align:right;">
 rel_bias
@@ -1445,26 +2018,53 @@ NA
 </div>
 </div>
 <div id="relative-criteria-for-variance-estimators" class="section level2" number="1.3">
-<h2 number="1.3"><span class="header-section-number">1.3</span> Relative Criteria for Variance Estimators</h2>
-<p>Variance estimators are always positive, and so relative criteria are often used to characterize their performance. For variance estimators, we have <span class="math inline">\(V\)</span> denoting the sampling variance of a point estimator <span class="math inline">\(T\)</span>. To assess the relative criteria for <span class="math inline">\(V\)</span>, we need to divide it by the true value of the sampling variance of <span class="math inline">\(T\)</span>, <span class="math inline">\(\lambda = \text{Var}(T)\)</span>, which we may not be able to calculate directly. In such scenario, we can use the sample variance of <span class="math inline">\(T\)</span> across the replications, <span class="math inline">\(S_T^2\)</span>, to estimate the true sampling variance.</p>
-<p>The relative bias would then be estimated by <span class="math inline">\(rB = \bar{V} / S_T^2\)</span>, the average of the variance estimates divided by the sample variance of the point estimates. To estimate MCSE of the relative bias of the variance estimator, we need to account for the uncertainty in the estimation of the true sampling variance. One way to do so is to use the jack-knife technique that we described above, which entails excluding a replicate <span class="math inline">\(j\)</span> and calculating relative bias <span class="math inline">\(\bar{V}_{(j)}/ S_{T(j)}^2\)</span>. The Monte Carlo standard error can then be calculated as:</p>
+<h2><span class="header-section-number">1.3</span> Relative Criteria for
+Variance Estimators</h2>
+<p>Variance estimators are always positive, and so relative criteria are
+often used to characterize their performance. For variance estimators,
+we have <span class="math inline">\(V\)</span> denoting the sampling
+variance of a point estimator <span class="math inline">\(T\)</span>. To
+assess the relative criteria for <span class="math inline">\(V\)</span>,
+we need to divide it by the true value of the sampling variance of <span class="math inline">\(T\)</span>, <span class="math inline">\(\lambda =
+\text{Var}(T)\)</span>, which we may not be able to calculate directly.
+In such scenario, we can use the sample variance of <span class="math inline">\(T\)</span> across the replications, <span class="math inline">\(S_T^2\)</span>, to estimate the true sampling
+variance.</p>
+<p>The relative bias would then be estimated by <span class="math inline">\(rB = \bar{V} / S_T^2\)</span>, the average of the
+variance estimates divided by the sample variance of the point
+estimates. To estimate MCSE of the relative bias of the variance
+estimator, we need to account for the uncertainty in the estimation of
+the true sampling variance. One way to do so is to use the jack-knife
+technique that we described above, which entails excluding a replicate
+<span class="math inline">\(j\)</span> and calculating relative bias
+<span class="math inline">\(\bar{V}_{(j)}/ S_{T(j)}^2\)</span>. The
+Monte Carlo standard error can then be calculated as:</p>
 <p><span class="math display">\[
-MCSE\left(rB\right) = \sqrt{\frac{K - 1}{K} \sum_{j=1}^K \left(rB_{(j)} - rB\right)^2}
+MCSE\left(rB\right) = \sqrt{\frac{K - 1}{K} \sum_{j=1}^K \left(rB_{(j)}
+- rB\right)^2}
 \]</span> which can be written as:</p>
 <p><span class="math display">\[
-MCSE\left(rB\right) = \sqrt{\frac{K - 1}{K} \sum_{j=1}^K \left(\frac{\bar{V}_{(j)}}{S_{T(j)}^2} - \frac{\bar{V}}{S_T^2}\right)^2}
+MCSE\left(rB\right) = \sqrt{\frac{K - 1}{K} \sum_{j=1}^K
+\left(\frac{\bar{V}_{(j)}}{S_{T(j)}^2} - \frac{\bar{V}}{S_T^2}\right)^2}
 \]</span></p>
-<p>We reformulate the MCSE using some algebra tricks similar to how we reformulated them for the RMSE MCSE formulas above.</p>
+<p>We reformulate the MCSE using some algebra tricks similar to how we
+reformulated them for the RMSE MCSE formulas above.</p>
 <p><span class="math display">\[
 \begin{aligned}
 \bar{V}_{(j)} &amp;= \frac{1}{K - 1}\left(K \bar{V} - V_j\right) \\
-S_{T(j)}^2 &amp;= \frac{1}{K - 2} \left[(K - 1) S_T^2 - \frac{K}{K - 1}\left(T_j - \bar{T}\right)^2\right]
+S_{T(j)}^2 &amp;= \frac{1}{K - 2} \left[(K - 1) S_T^2 - \frac{K}{K -
+1}\left(T_j - \bar{T}\right)^2\right]
 \end{aligned}
 \]</span></p>
-<p>Similarly, we can estimate the MCSE of relative MSE and RMSE using the jack-knife technique. To estimate the MSE we need to estimate <span class="math inline">\(S_{V(j)}^2\)</span>, which represents the sample variance of the variance estimates leaving replicate <span class="math inline">\(j\)</span> out. We calculate <span class="math inline">\(S_{V(j)}^2\)</span> as</p>
-<p><span class="math display">\[S_{V(j)}^2 = \frac{1}{K - 2} \left[(K - 1) S_V^2 - \frac{K}{K - 1}\left(V_j - \bar{V}\right)^2\right].\]</span></p>
-<p>We can then estimate the jack-knife relative MSE and RMSE following the same logic as we described above and then calculate the MCSE.</p>
-<p>Table 3 below lists relative performance measures for variance estimators.</p>
+<p>Similarly, we can estimate the MCSE of relative MSE and RMSE using
+the jack-knife technique. To estimate the MSE we need to estimate <span class="math inline">\(S_{V(j)}^2\)</span>, which represents the sample
+variance of the variance estimates leaving replicate <span class="math inline">\(j\)</span> out. We calculate <span class="math inline">\(S_{V(j)}^2\)</span> as</p>
+<p><span class="math display">\[S_{V(j)}^2 = \frac{1}{K - 2} \left[(K -
+1) S_V^2 - \frac{K}{K - 1}\left(V_j -
+\bar{V}\right)^2\right].\]</span></p>
+<p>We can then estimate the jack-knife relative MSE and RMSE following
+the same logic as we described above and then calculate the MCSE.</p>
+<p>Table 3 below lists relative performance measures for variance
+estimators.</p>
 <table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
 <caption>
 Table 3. Relative Performance Criteria for Variance Estimators
@@ -1503,7 +2103,8 @@ Relative difference from true parameter
 <span class="math inline">\(\bar{V} / S_T^2\)</span>
 </td>
 <td style="text-align:left;">
-<span class="math inline">\(\sqrt{\frac{K - 1}{K} \sum_{j=1}^K \left(rB_{(j)} - rB\right)^2}\)</span>
+<span class="math inline">\(\sqrt{\frac{K - 1}{K} \sum_{j=1}^K
+\left(rB_{(j)} - rB\right)^2}\)</span>
 </td>
 </tr>
 <tr>
@@ -1514,13 +2115,16 @@ Relative MSE
 Accuracy
 </td>
 <td style="text-align:left;">
-<span class="math inline">\(\text{E}\left[(V - \lambda)^2\right]/ \lambda^2\)</span>
+<span class="math inline">\(\text{E}\left[(V - \lambda)^2\right]/
+\lambda^2\)</span>
 </td>
 <td style="text-align:left;">
-<span class="math inline">\(\frac{(\bar{V} - S_T^2)^2 + S_V^2}{S_T^4}\)</span>
+<span class="math inline">\(\frac{(\bar{V} - S_T^2)^2 +
+S_V^2}{S_T^4}\)</span>
 </td>
 <td style="text-align:left;">
-<span class="math inline">\(\sqrt{\frac{K - 1}{K} \sum_{j=1}^K \left(rMSE_{(j)} - rMSE\right)^2}\)</span>
+<span class="math inline">\(\sqrt{\frac{K - 1}{K} \sum_{j=1}^K
+\left(rMSE_{(j)} - rMSE\right)^2}\)</span>
 </td>
 </tr>
 <tr>
@@ -1531,26 +2135,48 @@ Relative RMSE
 Accuracy
 </td>
 <td style="text-align:left;">
-<span class="math inline">\(\sqrt{\text{E}\left[(V - \lambda)^2\right]/ \lambda^2}\)</span>
+<span class="math inline">\(\sqrt{\text{E}\left[(V - \lambda)^2\right]/
+\lambda^2}\)</span>
 </td>
 <td style="text-align:left;">
-<span class="math inline">\(\sqrt{\frac{(\bar{V} - S_T^2)^2 + S_V^2}{S_T^4}}\)</span>
+<span class="math inline">\(\sqrt{\frac{(\bar{V} - S_T^2)^2 +
+S_V^2}{S_T^4}}\)</span>
 </td>
 <td style="text-align:left;">
-<span class="math inline">\(\sqrt{\frac{K - 1}{K} \sum_{j=1}^K \left(rRMSE_{(j)} - rRMSE\right)^2}\)</span>
+<span class="math inline">\(\sqrt{\frac{K - 1}{K} \sum_{j=1}^K
+\left(rRMSE_{(j)} - rRMSE\right)^2}\)</span>
 </td>
 </tr>
 </tbody>
 </table>
-<p>The function <code>calc_relative_var()</code> calculates the relative performance criteria estimates and corresponding jack-knife MCSEs for a variance estimator. The function requires <code>res_dat</code>, a data frame or tibble containing simulation results, <code>estimates</code>, the name of the column containing point estimates, <code>var_estimates</code>, the name of the column containing the variance estimates, and <code>perfm_criteria</code>, the criteria to be evaluated: <code>perfm_criteria = c(&quot;relative bias&quot;, &quot;relative mse&quot;, &quot;relative rmse&quot;)</code>.</p>
-<p>Below we demonstrate the use of the <code>calc_relative_var()</code> function. The variance estimates are expected to be different when derived from the conventional t-test as opposed to when they are derived from the Welch t-test. We group by the sample sizes, mean difference, and the t-test method. Note the difference between the conventional t-test and the Welch t-test results, especially when the group sample sizes are unequal.</p>
-<p>If there are any convergence issues with estimation, please again make sure that the estimation function returns <code>NA</code> values for the variance estimate and the point estimate. The <code>calc_relative_var()</code> function will omit the pair of point estimate and variance estimate if either value is <code>NA</code> before calculating the performance measure and MCSE.</p>
+<p>The function <code>calc_relative_var()</code> calculates the relative
+performance criteria estimates and corresponding jack-knife MCSEs for a
+variance estimator. The function requires <code>res_dat</code>, a data
+frame or tibble containing simulation results, <code>estimates</code>,
+the name of the column containing point estimates,
+<code>var_estimates</code>, the name of the column containing the
+variance estimates, and <code>perfm_criteria</code>, the criteria to be
+evaluated:
+<code>perfm_criteria = c(&quot;relative bias&quot;, &quot;relative mse&quot;, &quot;relative rmse&quot;)</code>.</p>
+<p>Below we demonstrate the use of the <code>calc_relative_var()</code>
+function. The variance estimates are expected to be different when
+derived from the conventional t-test as opposed to when they are derived
+from the Welch t-test. We group by the sample sizes, mean difference,
+and the t-test method. Note the difference between the conventional
+t-test and the Welch t-test results, especially when the group sample
+sizes are unequal.</p>
+<p>If there are any convergence issues with estimation, please again
+make sure that the estimation function returns <code>NA</code> values
+for the variance estimate and the point estimate. The
+<code>calc_relative_var()</code> function will omit the pair of point
+estimate and variance estimate if either value is <code>NA</code> before
+calculating the performance measure and MCSE.</p>
 <div id="example-2" class="section level3" number="1.3.1">
-<h3 number="1.3.1"><span class="header-section-number">1.3.1</span> Example</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>welch_res <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(n1, n2, mean_diff, method) <span class="sc">%&gt;%</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_modify</span>(<span class="sc">~</span> <span class="fu">calc_relative_var</span>(.x, <span class="at">estimates =</span> est, <span class="at">var_estimates =</span> var)) <span class="sc">%&gt;%</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">5</span>)</span></code></pre></div>
+<h3><span class="header-section-number">1.3.1</span> Example</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>welch_res <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  <span class="fu">group_by</span>(n1, n2, mean_diff, method) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="fu">group_modify</span>(<span class="sc">~</span> <span class="fu">calc_relative_var</span>(.x, <span class="at">estimates =</span> est, <span class="at">var_estimates =</span> var)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">5</span>)</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -1567,7 +2193,7 @@ mean_diff
 method
 </th>
 <th style="text-align:right;">
-K
+K_relvar
 </th>
 <th style="text-align:right;">
 rel_bias_var
@@ -2155,12 +2781,29 @@ t-test
 </div>
 </div>
 <div id="hypothesis-testing-and-confidence-intervals" class="section level2" number="1.4">
-<h2 number="1.4"><span class="header-section-number">1.4</span> Hypothesis Testing and Confidence Intervals</h2>
-<p>When doing hypothesis tests, we are often interested in whether the Type 1 error rate is adequately controlled and whether the test has enough power to detect an effect size of substantive interest. The rejection rate of a hypothesis test captures the proportion of times the p-value is below a specified <span class="math inline">\(\alpha\)</span> level—that is, the proportion of times we reject the null hypothesis. When the specified effect size is 0, we can examine Type 1 error rates and when the magnitude of the effect is greater than 0, we can examine power. We are also interested in confidence interval coverage, the proportion of intervals that contain the true parameter, and the interval width, which is an indicator of the precision of the interval estimator.</p>
-<p>Table 4 below presents the performance criteria used to evaluate hypothesis tests. In the table, let <span class="math inline">\(P_k\)</span> denote the p-value from simulation replication <span class="math inline">\(k\)</span>, for <span class="math inline">\(k = 1,...,K\)</span>. Suppose that the confidence intervals are for the target parameter <span class="math inline">\(\theta\)</span> and have coverage level <span class="math inline">\(\beta\)</span>. Let <span class="math inline">\(A_k\)</span> and <span class="math inline">\(B_k\)</span> denote the lower and upper end-points of the confidence interval from simulation replication <span class="math inline">\(k\)</span>, and let <span class="math inline">\(W_k = B_k − A_k\)</span>, for <span class="math inline">\(k = 1,...,K\)</span>.</p>
+<h2><span class="header-section-number">1.4</span> Hypothesis Testing
+and Confidence Intervals</h2>
+<p>When doing hypothesis tests, we are often interested in whether the
+Type 1 error rate is adequately controlled and whether the test has
+enough power to detect an effect size of substantive interest. The
+rejection rate of a hypothesis test captures the proportion of times the
+p-value is below a specified <span class="math inline">\(\alpha\)</span>
+level—that is, the proportion of times we reject the null hypothesis.
+When the specified effect size is 0, we can examine Type 1 error rates
+and when the magnitude of the effect is greater than 0, we can examine
+power. We are also interested in confidence interval coverage, the
+proportion of intervals that contain the true parameter, and the
+interval width, which is an indicator of the precision of the interval
+estimator.</p>
+<p>Table 4 below presents the performance criteria used to evaluate
+hypothesis tests. In the table, let <span class="math inline">\(P_k\)</span> denote the p-value from simulation
+replication <span class="math inline">\(k\)</span>, for <span class="math inline">\(k = 1,...,K\)</span>. Suppose that the confidence
+intervals are for the target parameter <span class="math inline">\(\theta\)</span> and have coverage level <span class="math inline">\(\beta\)</span>. Let <span class="math inline">\(A_k\)</span> and <span class="math inline">\(B_k\)</span> denote the lower and upper end-points
+of the confidence interval from simulation replication <span class="math inline">\(k\)</span>, and let <span class="math inline">\(W_k = B_k − A_k\)</span>, for <span class="math inline">\(k = 1,...,K\)</span>.</p>
 <table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
 <caption>
-Table 4. Hypothesis Testing and Confidence Intervals Performance Criteria
+Table 4. Hypothesis Testing and Confidence Intervals Performance
+Criteria
 </caption>
 <thead>
 <tr>
@@ -2193,7 +2836,8 @@ Type 1 error or power
 <span class="math inline">\(\rho_\alpha = Pr(P_k) &lt; \alpha\)</span>
 </td>
 <td style="text-align:left;">
-<span class="math inline">\(r_\alpha = \frac{1}{K} \sum_{k=1}^K I(P_k &lt; \alpha)\)</span>
+<span class="math inline">\(r_\alpha = \frac{1}{K} \sum_{k=1}^K I(P_k
+&lt; \alpha)\)</span>
 </td>
 <td style="text-align:left;">
 <span class="math inline">\(\sqrt{r_\alpha(1 - r_\alpha) / K}\)</span>
@@ -2207,10 +2851,12 @@ Coverage
 Proportion of intervals containing true parameter
 </td>
 <td style="text-align:left;">
-<span class="math inline">\(\omega_\beta = Pr(A \leq \theta \leq B)\)</span>
+<span class="math inline">\(\omega_\beta = Pr(A \leq \theta \leq
+B)\)</span>
 </td>
 <td style="text-align:left;">
-<span class="math inline">\(c_\beta = \frac{1}{K}\sum_{k=1}^K I(A_k \leq \theta \leq B_k)\)</span>
+<span class="math inline">\(c_\beta = \frac{1}{K}\sum_{k=1}^K I(A_k \leq
+\theta \leq B_k)\)</span>
 </td>
 <td style="text-align:left;">
 <span class="math inline">\(\sqrt{c_\beta (1 - c_\beta) / K}\)</span>
@@ -2236,13 +2882,21 @@ Precision
 </tbody>
 </table>
 <div id="example-3" class="section level3" number="1.4.1">
-<h3 number="1.4.1"><span class="header-section-number">1.4.1</span> Example</h3>
-<p>Below we calculate the rejection rates for the hypothesis tests conducted using the conventional two-sample t-test and the Welch t-test. The null hypothesis is that the two groups have the same means. The <code>calc_rejection()</code> function requires a data frame or tibble containing simulation results as the first argument. The second argument, <code>p_values</code>, requires the name of the column containing p-values. The third argument, <code>alpha</code>, lets the user specify a value for <span class="math inline">\(\alpha\)</span>. The default value is set to the conventional 0.05.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using group_modify()</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>welch_res <span class="sc">%&gt;%</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(n1, n2, mean_diff, method) <span class="sc">%&gt;%</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_modify</span>(<span class="sc">~</span> <span class="fu">calc_rejection</span>(.x, <span class="at">p_values =</span> p_val)) <span class="sc">%&gt;%</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">5</span>)</span></code></pre></div>
+<h3><span class="header-section-number">1.4.1</span> Example</h3>
+<p>Below we calculate the rejection rates for the hypothesis tests
+conducted using the conventional two-sample t-test and the Welch t-test.
+The null hypothesis is that the two groups have the same means. The
+<code>calc_rejection()</code> function requires a data frame or tibble
+containing simulation results as the first argument. The second
+argument, <code>p_values</code>, requires the name of the column
+containing p-values. The third argument, <code>alpha</code>, lets the
+user specify a value for <span class="math inline">\(\alpha\)</span>.
+The default value is set to the conventional 0.05.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># using group_modify()</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>welch_res <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  <span class="fu">group_by</span>(n1, n2, mean_diff, method) <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>  <span class="fu">group_modify</span>(<span class="sc">~</span> <span class="fu">calc_rejection</span>(.x, <span class="at">p_values =</span> p_val)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">5</span>)</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -2259,7 +2913,7 @@ mean_diff
 method
 </th>
 <th style="text-align:right;">
-K
+K_rejection
 </th>
 <th style="text-align:right;">
 rej_rate
@@ -2640,13 +3294,25 @@ t-test
 </tr>
 </tbody>
 </table>
-<p>Below we calculate the confidence interval coverage rates and widths for the estimates of the mean difference. The <code>calc_coverage()</code> function requires a data frame or tibble containing the simulation results as the first argument. The second and third arguments, <code>lower_bound</code> and <code>upper_bound</code>, take in the name of the columns that contain the lower and upper bound estimates of the confidence intervals. The <code>true_param</code> argument requires the name of the column containing the true parameters. Like <code>calc_absolute()</code>, <code>calc_relative()</code> and <code>calc_relative_var()</code>, <code>calc_coverage()</code> also has an argument, <code>perfm_criteria</code>, where the user can specify which criteria to evaluate: <code>perfm_criteria = c(&quot;coverage&quot;, &quot;width&quot;)</code>.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using group_modify()</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>welch_res <span class="sc">%&gt;%</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">params =</span> mean_diff) <span class="sc">%&gt;%</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(n1, n2, mean_diff, method) <span class="sc">%&gt;%</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_modify</span>(<span class="sc">~</span> <span class="fu">calc_coverage</span>(.x, <span class="at">lower_bound =</span> lower_bound, <span class="at">upper_bound =</span> upper_bound, <span class="at">true_param =</span> params)) <span class="sc">%&gt;%</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">5</span>)</span></code></pre></div>
+<p>Below we calculate the confidence interval coverage rates and widths
+for the estimates of the mean difference. The
+<code>calc_coverage()</code> function requires a data frame or tibble
+containing the simulation results as the first argument. The second and
+third arguments, <code>lower_bound</code> and <code>upper_bound</code>,
+take in the name of the columns that contain the lower and upper bound
+estimates of the confidence intervals. The <code>true_param</code>
+argument requires the name of the column containing the true parameters.
+Like <code>calc_absolute()</code>, <code>calc_relative()</code> and
+<code>calc_relative_var()</code>, <code>calc_coverage()</code> also has
+an argument, <code>perfm_criteria</code>, where the user can specify
+which criteria to evaluate:
+<code>perfm_criteria = c(&quot;coverage&quot;, &quot;width&quot;)</code>.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># using group_modify()</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>welch_res <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">params =</span> mean_diff) <span class="sc">%&gt;%</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>  <span class="fu">group_by</span>(n1, n2, mean_diff, method) <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>  <span class="fu">group_modify</span>(<span class="sc">~</span> <span class="fu">calc_coverage</span>(.x, <span class="at">lower_bound =</span> lower_bound, <span class="at">upper_bound =</span> upper_bound, <span class="at">true_param =</span> params)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">5</span>)</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -2663,7 +3329,7 @@ mean_diff
 method
 </th>
 <th style="text-align:right;">
-K
+K_coverage
 </th>
 <th style="text-align:right;">
 coverage
@@ -3150,28 +3816,52 @@ t-test
 </div>
 </div>
 <div id="how-to-evaluate-mcse" class="section level1" number="2">
-<h1 number="2"><span class="header-section-number">2</span> How to Evaluate MCSE</h1>
-<p>Generally, the associated MCSE should be small compared to the performance measure. Below is an example from <span class="citation">Frane (2015)</span> of how to write up MCSE results as part of simulation study results. <span class="citation">Frane (2015)</span> compared various methods to control Type 1 error rates when conducting analysis on multiple outcome variables. In describing the simulation results, he wrote:</p>
+<h1><span class="header-section-number">2</span> How to Evaluate
+MCSE</h1>
+<p>Generally, the associated MCSE should be small compared to the
+performance measure. Below is an example from <span class="citation">Frane (2015)</span> of how to write up MCSE results as
+part of simulation study results. <span class="citation">Frane
+(2015)</span> compared various methods to control Type 1 error rates
+when conducting analysis on multiple outcome variables. In describing
+the simulation results, he wrote:</p>
 <blockquote>
-<p>Only Bonferroni and MP strictly controlled the PFER; the observed maximum PFER was 0.050 for Bonferroni, 0.051 for Sidák, 0.061 for Holm, 0.100 for Hochberg, and 0.050 for MP (estimated SE ≤ 0.0002 for all estimates).</p>
+<p>Only Bonferroni and MP strictly controlled the PFER; the observed
+maximum PFER was 0.050 for Bonferroni, 0.051 for Sidák, 0.061 for Holm,
+0.100 for Hochberg, and 0.050 for MP (estimated SE ≤ 0.0002 for all
+estimates).</p>
 </blockquote>
-<p>The PFER refers to per family error rate, the expected number of Type 1 errors out of <span class="math inline">\(m\)</span> comparisons. MP refers to multivariate analysis of variance (MANOVA) protected tests. The SE refers to the MCSE. The number of replications was 1,000,000 in <span class="citation">Frane (2015)</span>. We note that the number is quite high and generally 1,000 to 10,000 replications are enough. The resulting MCSEs in <span class="citation">Frane (2015)</span>, therefore, are exceedingly small compared to the values for PFER.</p>
-<p>For more information for performance criteria and MCSE, we recommend <span class="citation">Morris, White, &amp; Crowther (2019)</span>.</p>
+<p>The PFER refers to per family error rate, the expected number of Type
+1 errors out of <span class="math inline">\(m\)</span> comparisons. MP
+refers to multivariate analysis of variance (MANOVA) protected tests.
+The SE refers to the MCSE. The number of replications was 1,000,000 in
+<span class="citation">Frane (2015)</span>. We note that the number is
+quite high and generally 1,000 to 10,000 replications are enough. The
+resulting MCSEs in <span class="citation">Frane (2015)</span>,
+therefore, are exceedingly small compared to the values for PFER.</p>
+<p>For more information for performance criteria and MCSE, we recommend
+<span class="citation">Morris et al. (2019)</span>.</p>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1 class="unnumbered">References</h1>
 <div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
 <div id="ref-efron1981jackknife" class="csl-entry">
-Efron, B., &amp; Stein, C. (1981). The jackknife estimate of variance. <em>The Annals of Statistics</em>, 586–596.
+Efron, B., &amp; Stein, C. (1981). The jackknife estimate of variance.
+<em>The Annals of Statistics</em>, 586–596.
 </div>
 <div id="ref-frane2015power" class="csl-entry">
-Frane, A. V. (2015). Power and type i error control for univariate comparisons in multivariate two-group designs. <em>Multivariate Behavioral Research</em>, <em>50</em>(2), 233–247.
+Frane, A. V. (2015). Power and type i error control for univariate
+comparisons in multivariate two-group designs. <em>Multivariate
+Behavioral Research</em>, <em>50</em>(2), 233–247.
 </div>
 <div id="ref-morris2019using" class="csl-entry">
-Morris, T. P., White, I. R., &amp; Crowther, M. J. (2019). Using simulation studies to evaluate statistical methods. <em>Statistics in Medicine</em>, <em>38</em>(11), 2074–2102.
+Morris, T. P., White, I. R., &amp; Crowther, M. J. (2019). Using
+simulation studies to evaluate statistical methods. <em>Statistics in
+Medicine</em>, <em>38</em>(11), 2074–2102.
 </div>
 <div id="ref-tidyverse" class="csl-entry">
-Wickham, H., Averick, M., Bryan, J., Chang, W., McGowan, L. D., François, R., … Yutani, H. (2019). Welcome to the <span class="nocase">tidyverse</span>. <em>Journal of Open Source Software</em>, <em>4</em>(43), 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>
+Wickham, H., Averick, M., Bryan, J., Chang, W., McGowan, L. D.,
+François, R., … Yutani, H. (2019). Welcome to the <span class="nocase">tidyverse</span>. <em>Journal of Open Source
+Software</em>, <em>4</em>(43), 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>
 </div>
 </div>
 </div>

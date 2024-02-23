@@ -11,6 +11,7 @@
 #'   the variable names in \code{params}. The function must return a
 #'   \code{data.frame}, \code{tibble}, or vector.
 #' @param ... additional arguments passed to \code{sim_function}.
+#' @param results_name character string to set the name of the column storing the results of the simulation. Default is \code{".results"}.
 #' @param system_time logical indicating whether to print computation time.
 #'   \code{TRUE} by default.
 #' @inheritParams furrr::future_pmap
@@ -27,10 +28,9 @@
 #'
 #' evaluate_by_row(df, rpois)
 #'
-#' @importFrom rlang .data
-#' @importFrom magrittr "%>%"
 
 evaluate_by_row <- function(params, sim_function, ...,
+                            results_name = ".results",
                             .progress = FALSE, .options = furrr::furrr_options(),
                             system_time = TRUE) {
 
@@ -46,8 +46,7 @@ evaluate_by_row <- function(params, sim_function, ...,
 
   if (system_time) print(sys_tm, "\n")
 
-  params %>%
-    dplyr::mutate(.results = results_list) %>%
-    tidyr::unnest(.data$.results)
+  params[[results_name]] <- results_list
+  tidyr::unnest(params, cols = tidyr::all_of(results_name))
 
 }
