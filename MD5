@@ -1,6 +1,6 @@
-1ce0d08a3e7b598fe0b7d5bf02c4ec15 *DESCRIPTION
+10b0792ca64294b53f7eb46237d806e7 *DESCRIPTION
 9759b32e586099c130eeb5de31687127 *NAMESPACE
-58ecba25cb121c18e3d78fb09c188c3c *NEWS.md
+b9f1b77df76d3c3681ee15ce233cc953 *NEWS.md
 3d28cc6f2b0844e3b0ab8e96c1b7fd2f *R/Tipton_Pusto.R
 6097de5cb8845d6c34ef94514731234d *R/alpha_res.R
 83894f5413cc05fceba57dcd268d811c *R/bundle_sim.R
@@ -13,7 +13,7 @@ e2e72819756b19e6c41b7b76a95dc484 *R/calc_relative.R
 7150b99de41da6eac0af0db2f72b13ce *R/simulation_skeleton.R
 35ea0700d4da5e024874749cdb13fb04 *R/t_res.R
 c8cfc91833f84a23189212e3720731ce *R/welch_res.R
-0eabcbcb937ed253bc424456defcc8fc *build/partial.rdb
+5d895e10079bab8b9e71c988f17f19ad *build/partial.rdb
 3a6e5f6b0330a5323f0bc381cd3b9af7 *build/vignette.rds
 2d79f8a39e5bca31700a478a5929dbf5 *data/Tipton_Pusto.rda
 6c1055d6b39037f941dc7f61a5033387 *data/alpha_res.rda
@@ -22,13 +22,13 @@ ffbc904e98d88fce5b57a5f66b86d29b *data/welch_res.rda
 69b1de53cd83b77e16465d51ae56c6ea *inst/REFERENCES.bib
 21b5d423f93fda19c83c7ec6b71f1e61 *inst/doc/MCSE.R
 dd77c5e7b5a4641bc0b962f1d5a3537f *inst/doc/MCSE.Rmd
-06ed61ac605dfae2934900a3f49b0b74 *inst/doc/MCSE.html
+ed9f37a3c55f4f78a29d791f7d5bf402 *inst/doc/MCSE.html
 b02bdd6cf48c6ad9e6a69d29e57ebecc *inst/doc/simulation_workflow.R
 efaa891157c66991a9d9b404844c25d2 *inst/doc/simulation_workflow.Rmd
-306418a831c6f963eb557e30a5c44e84 *inst/doc/simulation_workflow.html
+b85a73612484697c1ed4827e9b4d9c0f *inst/doc/simulation_workflow.html
 85e60bac2931142d9aea4d388ee97c1a *inst/doc/visualization.R
 04726df9e85a5ac1409db71f6bc5196c *inst/doc/visualization.Rmd
-0532f11f551c6bcfbf862ad9f157af2c *inst/doc/visualization.html
+3567a918e0016b23580d7132a103932f *inst/doc/visualization.html
 2c037ab377d6953b1c40e93e78c28dca *inst/skel_temp/1_data_gen.R
 e01b7a7a41770c247388c9f94d094386 *inst/skel_temp/2_estimation.R
 7f6ca5bada02c2e8ab7eee33754591c4 *inst/skel_temp/3_performance_criteria.R
@@ -50,7 +50,7 @@ cdd280b179bce81ffd6036c934f6d93f *man/figures/workflow.png
 8290147ac9c25e4ce77e86500f92650c *man/t_res.Rd
 39e43c3fdcdcd5161ff9f69d10dfb873 *man/welch_res.Rd
 1b1f2609e3c9a9eef0df8a43a725e115 *tests/testthat.R
-1437ca846e51d1fc6fbd3095073ff980 *tests/testthat/test_bundle_sim.R
+37254862b971c5f012d80216c8a4c574 *tests/testthat/test_bundle_sim.R
 8b4852225b869ebabe9cca6a9a88f69a *tests/testthat/test_bundle_sim_with_ebr.R
 b10bda99a9a43f4c698c299f126cb674 *tests/testthat/test_calc_combinations.R
 84d13e99fdaca3c4afe0d8faa1824e6b *tests/testthat/test_ebr.R
