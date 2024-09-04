@@ -1,10 +1,10 @@
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
 
-## ---- warning = FALSE, message = FALSE----------------------------------------
+## ----warning = FALSE, message = FALSE-----------------------------------------
 library(simhelpers)
 library(dplyr)
 library(tibble)
@@ -15,7 +15,7 @@ library(kableExtra)
 library(broom)
 library(ggplot2)
 
-## ---- eval = FALSE------------------------------------------------------------
+## ----eval = FALSE-------------------------------------------------------------
 #  generate_dat <- function(model_params) {
 #  
 #    return(dat)
@@ -49,14 +49,14 @@ example_dat %>%
             SD = sd(y)) %>%
   kable(digits = 3)
 
-## ---- fig.width = 7, fig.height = 3-------------------------------------------
+## ----fig.width = 7, fig.height = 3--------------------------------------------
 ggplot(example_dat, aes(x = y, fill = group)) + 
   geom_density(alpha = .5) + 
   labs(x = "Outcome Scores", y = "Density", fill = "Group") + 
   theme_bw() +
   theme(legend.position = c(0.9, 0.8))
 
-## ---- eval = FALSE------------------------------------------------------------
+## ----eval = FALSE-------------------------------------------------------------
 #  estimate <- function(dat, design_params) {
 #  
 #    return(results)
@@ -129,7 +129,7 @@ t_res <-
 
 t_res
 
-## ---- eval = FALSE------------------------------------------------------------
+## ----eval = FALSE-------------------------------------------------------------
 #  estimate <- function(dat, design_parameters){
 #  
 #    # write estimation models here
@@ -149,7 +149,7 @@ t_res
 #  
 #  }
 
-## ---- eval = FALSE------------------------------------------------------------
+## ----eval = FALSE-------------------------------------------------------------
 #  calc_performance <- function(results, model_params) {
 #  
 #    return(performance_measures)
@@ -166,7 +166,7 @@ calc_performance <- function(results) {
 }
 
 
-## ---- eval = FALSE------------------------------------------------------------
+## ----eval = FALSE-------------------------------------------------------------
 #  run_sim <- function(iterations, model_params, design_params, seed = NULL) {
 #    if (!is.null(seed)) set.seed(seed)
 #  
@@ -194,7 +194,7 @@ run_sim <- function(iterations, n1, n2, mean_diff, seed = NULL) {
 }
 
 
-## ---- eval = FALSE------------------------------------------------------------
+## ----eval = FALSE-------------------------------------------------------------
 #  set.seed(20150316) # change this seed value!
 #  
 #  # now express the simulation parameters as vectors/lists
@@ -250,7 +250,7 @@ system.time(
 results %>%
   kable()
 
-## ---- eval = FALSE------------------------------------------------------------
+## ----eval = FALSE-------------------------------------------------------------
 #  plan(multisession)
 
 ## ----furrr, warning = F, message = F, eval = FALSE----------------------------

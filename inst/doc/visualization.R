@@ -1,4 +1,4 @@
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -19,7 +19,7 @@ Tipton_Pusto <- Tipton_Pusto %>%
   mutate(q_graph = paste("q = ", q),
          m = paste("m = ", num_studies))
 
-## ---- fig.width = 8, fig.height = 5.5-----------------------------------------
+## ----fig.width = 8, fig.height = 5.5------------------------------------------
 Tipton_Pusto %>%
   ggplot(aes(x = test, y = rej_rate, fill = test)) + 
   geom_hline(yintercept = .05, linetype = "dashed") + 

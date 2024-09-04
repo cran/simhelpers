@@ -1,27 +1,29 @@
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
 
-## ---- echo = FALSE, warning = FALSE, message = FALSE--------------------------
+## ----echo = FALSE, warning = FALSE, message = FALSE---------------------------
 library(dplyr)
 library(tibble)
 library(kableExtra)
 
-abs_dat <- tibble(Criterion = c("Bias","Variance","MSE", "RMSE"),
-              Measure = c("Difference from true parameter", "Precision", "Accuracy", "Accuracy"),
-              Definition = c("$\\text{E}(T) - \\theta$", "$\\text{E}\\left[(T - \\text{E}(T))^2\\right]$",  "$\\text{E}\\left[(T - \\theta)^2\\right]$", "$\\sqrt{\\text{E}\\left[(T - \\theta)^2\\right]}$"),
-              Estimate = c("$\\bar{T} - \\theta$", "$S_T^2$", 
-                           "$\\frac{1}{K}\\sum_{k=1}^{K}\\left(T_k - \\theta\\right)^2$", "$\\sqrt{\\frac{1}{K}\\sum_{k=1}^{K}\\left(T_k - \\theta\\right)^2}$"),
-              MCSE = c("$\\sqrt{S_T^2/ K}$", "$S_T^2 \\sqrt{\\frac{k_T - 1}{K}}$",  
-                       "$\\sqrt{\\frac{1}{K}\\left[S_T^4 (k_T - 1) + 4 S_T^3 g_T(\\bar{T} - \\theta) + 4 S_T^2 (\\bar{T} - \\theta)^2\\right]}$ ", "$\\sqrt{\\frac{K - 1}{K} \\sum_{j=1}^K \\left(RMSE_{(j)} - RMSE\\right)^2}$"))
+abs_dat <- tribble(
+  ~ Criterion,       ~ Measure,                        ~ Definition,                                               ~ Estimate,                                                            ~ MCSE,
+  "Bias",            "Difference from true parameter", "$\\text{E}(T) - \\theta$",                                 "$\\bar{T} - \\theta$",                                                "$\\sqrt{S_T^2/ K}$",
+  "Variance",        "Precision",                      "$\\text{E}\\left[(T - \\text{E}(T))^2\\right]$",           "$S_T^2$",                                                             "$S_T^2 \\sqrt{\\frac{k_T - 1}{K}}$", 
+  "Standard Error",  "Precision",                      "$\\sqrt{\\text{E}\\left[(T - \\text{E}(T))^2\\right]}$",   "$S_T$",                                                               "$\\sqrt{\\frac{K - 1}{K} \\sum_{j=1}^K (\\sqrt{S_{T(j)}^2} - S_T)^2 }$",
+  "MSE",             "Accuracy",                       "$\\text{E}\\left[(T - \\theta)^2\\right]$",                "$\\frac{1}{K}\\sum_{k=1}^{K}\\left(T_k - \\theta\\right)^2$",         "$\\sqrt{\\frac{1}{K}\\left[S_T^4 (k_T - 1) + 4 S_T^3 g_T(\\bar{T} - \\theta) + 4 S_T^2 (\\bar{T} - \\theta)^2\\right]}$ ",
+  "RMSE",            "Accuracy",                       "$\\sqrt{\\text{E}\\left[(T - \\theta)^2\\right]}$",        "$\\sqrt{\\frac{1}{K}\\sum_{k=1}^{K}\\left(T_k - \\theta\\right)^2}$", "$\\sqrt{\\frac{K - 1}{K} \\sum_{j=1}^K \\left(RMSE_{(j)} - RMSE\\right)^2}$"
+)
+
 
 knitr::kable(abs_dat, escape = FALSE, caption = "Table 1. Absolute Performance Criteria") %>%
   kable_styling(bootstrap_options = c("striped", "hover"))
   
 
-## ---- message = FALSE, warning = FALSE----------------------------------------
+## ----message = FALSE, warning = FALSE-----------------------------------------
 library(simhelpers)
 library(dplyr)
 library(tibble)
@@ -49,7 +51,7 @@ welch_res %>%
   group_modify(~ calc_absolute(.x, estimates = est, true_param = params)) %>%
   kable(digits = 5)
 
-## ---- echo = FALSE, warning = FALSE, message = FALSE--------------------------
+## ----echo = FALSE, warning = FALSE, message = FALSE---------------------------
 rel_dat <- tibble(Criterion = c("Relative Bias","Relative MSE", "Relative RMSE"),
                   Measure = c("Relative difference from true parameter", "Accuracy", "Accuracy"),
               Definition = c("$\\text{E}(T) / \\theta$", "$\\text{E}\\left[(T - \\theta)^2\\right]/ \\theta^2$", "$\\sqrt{\\text{E}\\left[(T - \\theta)^2\\right]/ \\theta^2}$"),
@@ -70,7 +72,7 @@ welch_res %>%
   group_modify(~ calc_relative(.x, estimates = est, true_param = params)) %>%
   kable(digits = 5)
 
-## ---- echo = FALSE, warning = FALSE, message = FALSE--------------------------
+## ----echo = FALSE, warning = FALSE, message = FALSE---------------------------
 rel_dat_var <- tibble(Criterion = c("Relative Bias","Relative MSE", "Relative RMSE"),
                       Measure = c("Relative difference from true parameter", "Accuracy", "Accuracy"),
               Definition = c("$\\text{E}(V) / \\lambda$", "$\\text{E}\\left[(V - \\lambda)^2\\right]/ \\lambda^2$", "$\\sqrt{\\text{E}\\left[(V - \\lambda)^2\\right]/ \\lambda^2}$"),
@@ -89,7 +91,7 @@ welch_res %>%
   group_modify(~ calc_relative_var(.x, estimates = est, var_estimates = var)) %>%
   kable(digits = 5)
 
-## ---- echo = FALSE, warning = FALSE, message = FALSE--------------------------
+## ----echo = FALSE, warning = FALSE, message = FALSE---------------------------
 hyp_dat <- tibble(Criterion = c("Rejection Rate","Coverage","Width"),
               Measure = c("Type 1 error or power", "Proportion of intervals containing true parameter", "Precision"),
               Definition = c("$\\rho_\\alpha = Pr(P_k) < \\alpha$", "$\\omega_\\beta = Pr(A \\leq \\theta \\leq B)$", "$\\text{E}(W) = \\text{E}(B - A)$"),
