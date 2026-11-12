@@ -3,13 +3,14 @@
 \name{extrapolate_coverage}
 \alias{extrapolate_coverage}
 \title{Extrapolate coverage and width using sub-sampled bootstrap confidence
-  intervals.}
+intervals.}
 \usage{
 extrapolate_coverage(
   data,
   CI_subsamples,
   true_param,
   B_target = Inf,
+  exclude_above = B_target - 1L,
   criteria = c("coverage", "width"),
   winz = Inf,
   nested = FALSE,
@@ -31,6 +32,11 @@ corresponding true parameters.}
 
 \item{B_target}{number of bootstrap replications to which the criteria should
 be extrapolated, with a default of \code{B = Inf}.}
+
+\item{exclude_above}{numeric threshold for bootstrap replication sizes that
+should be excluded before calculating extrapolations. By default, set to
+\code{B_target - 1L} so that CIs based on B_target or greater replications
+will be excluded from the extrapolation calculations.}
 
 \item{criteria}{character or character vector indicating the performance
 criteria to be calculated, with possible options \code{"coverage"} and
@@ -59,21 +65,23 @@ each CI type.}
 when summarizing CI widths across replications from a single set of
 bootstraps, with a default of 0.0 (i.e., use the regular arithmetic mean).}
 
-\item{cover_na_val}{numeric value to use for calculating coverage if bootstrap CI end-points are missing. Default is \code{NA}.}
+\item{cover_na_val}{numeric value to use for calculating coverage if
+bootstrap CI end-points are missing. Default is \code{NA}.}
 
-\item{width_na_val}{numeric value to use for calculating width if bootstrap CI end-points are missing. Default is \code{NA}.}
+\item{width_na_val}{numeric value to use for calculating width if bootstrap
+CI end-points are missing. Default is \code{NA}.}
 }
 \value{
 A tibble containing the number of simulation iterations, performance
-  criteria estimate(s) and the associated MCSE.
+criteria estimate(s) and the associated MCSE.
 }
 \description{
 Given a set of bootstrap confidence intervals calculated across
-  sub-samples with different numbers of replications, extrapolates confidence
-  interval coverage and width of bootstrap confidence intervals to a
-  specified (larger) number of bootstraps. The function also calculates the
-  associated Monte Carlo standard errors. The confidence interval percentage
-  is based on how you calculated the lower and upper bounds.
+sub-samples with different numbers of replications, extrapolates confidence
+interval coverage and width of bootstrap confidence intervals to a
+specified (larger) number of bootstraps. The function also calculates the
+associated Monte Carlo standard errors. The confidence interval percentage
+is based on how you calculated the lower and upper bounds.
 }
 \examples{
 

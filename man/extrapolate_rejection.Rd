@@ -3,12 +3,13 @@
 \name{extrapolate_rejection}
 \alias{extrapolate_rejection}
 \title{Extrapolate coverage and width using sub-sampled bootstrap confidence
-  intervals.}
+intervals.}
 \usage{
 extrapolate_rejection(
   data,
   pvalue_subsamples,
   B_target = Inf,
+  exclude_above = B_target - 1L,
   alpha = 0.05,
   nested = FALSE,
   format = "wide"
@@ -23,6 +24,11 @@ numbers of replications.}
 
 \item{B_target}{number of bootstrap replications to which the criteria should
 be extrapolated, with a default of \code{B = Inf}.}
+
+\item{exclude_above}{numeric threshold for bootstrap replication sizes that
+should be excluded before calculating extrapolations. By default, set to
+\code{B_target - 1L} so that p-values based on B_target or greater replications
+will be excluded from the extrapolation calculations.}
 
 \item{alpha}{scalar or vector indicating the nominal alpha level(s). Default
 value is set to the conventional .05.}
@@ -42,15 +48,15 @@ each CI type.}
 }
 \value{
 A tibble containing the number of simulation iterations, performance
-  criteria estimate(s) and the associated MCSE.
+criteria estimate(s) and the associated MCSE.
 }
 \description{
 Given a set of bootstrap confidence intervals calculated across
-  sub-samples with different numbers of replications, extrapolates confidence
-  interval coverage and width of bootstrap confidence intervals to a
-  specified (larger) number of bootstraps. The function also calculates the
-  associated Monte Carlo standard errors. The confidence interval percentage
-  is based on how you calculated the lower and upper bounds.
+sub-samples with different numbers of replications, extrapolates confidence
+interval coverage and width of bootstrap confidence intervals to a
+specified (larger) number of bootstraps. The function also calculates the
+associated Monte Carlo standard errors. The confidence interval percentage
+is based on how you calculated the lower and upper bounds.
 }
 \examples{
 

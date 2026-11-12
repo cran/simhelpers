@@ -16,10 +16,10 @@ library(broom)
 library(ggplot2)
 
 ## ----eval = FALSE-------------------------------------------------------------
-#  generate_dat <- function(model_params) {
-#  
-#    return(dat)
-#  }
+# generate_dat <- function(model_params) {
+# 
+#   return(dat)
+# }
 
 ## -----------------------------------------------------------------------------
 generate_dat <- function(n1, n2, mean_diff){
@@ -57,10 +57,10 @@ ggplot(example_dat, aes(x = y, fill = group)) +
   theme(legend.position = c(0.9, 0.8))
 
 ## ----eval = FALSE-------------------------------------------------------------
-#  estimate <- function(dat, design_params) {
-#  
-#    return(results)
-#  }
+# estimate <- function(dat, design_params) {
+# 
+#   return(results)
+# }
 
 ## -----------------------------------------------------------------------------
 # t and p value
@@ -130,30 +130,30 @@ t_res <-
 t_res
 
 ## ----eval = FALSE-------------------------------------------------------------
-#  estimate <- function(dat, design_parameters){
-#  
-#    # write estimation models here
-#    # e.g., fit_mimic <- lavaan::cfa(...)
-#  
-#  
-#    # convergence
-#    if(fit_mimic@optim$converged == FALSE){  # this syntax will depend on how the specific model stores convergence
-#      res <- tibble(method = method, est = NA, p_val = NA,
-#                    lower_bound = NA, upper_bound = NA)
-#    } else{
-#      res <- tibble(method = method, est = est, p_val = p_val,
-#                    lower_bound = ci[1], upper_bound = ci[2])
-#    }
-#  
-#    return(res)
-#  
-#  }
+# estimate <- function(dat, design_parameters){
+# 
+#   # write estimation models here
+#   # e.g., fit_mimic <- lavaan::cfa(...)
+# 
+# 
+#   # convergence
+#   if(fit_mimic@optim$converged == FALSE){  # this syntax will depend on how the specific model stores convergence
+#     res <- tibble(method = method, est = NA, p_val = NA,
+#                   lower_bound = NA, upper_bound = NA)
+#   } else{
+#     res <- tibble(method = method, est = est, p_val = p_val,
+#                   lower_bound = ci[1], upper_bound = ci[2])
+#   }
+# 
+#   return(res)
+# 
+# }
 
 ## ----eval = FALSE-------------------------------------------------------------
-#  calc_performance <- function(results, model_params) {
-#  
-#    return(performance_measures)
-#  }
+# calc_performance <- function(results, model_params) {
+# 
+#   return(performance_measures)
+# }
 
 ## -----------------------------------------------------------------------------
 calc_performance <- function(results) {
@@ -167,17 +167,17 @@ calc_performance <- function(results) {
 
 
 ## ----eval = FALSE-------------------------------------------------------------
-#  run_sim <- function(iterations, model_params, design_params, seed = NULL) {
-#    if (!is.null(seed)) set.seed(seed)
-#  
-#    results <-
-#      map_dfr(1:iterations, ~ {
-#        dat <- generate_dat(model_params)
-#        estimate(dat, design_params)
-#      })
-#  
-#    calc_performance(results, model_params)
-#  }
+# run_sim <- function(iterations, model_params, design_params, seed = NULL) {
+#   if (!is.null(seed)) set.seed(seed)
+# 
+#   results <-
+#     map_dfr(1:iterations, ~ {
+#       dat <- generate_dat(model_params)
+#       estimate(dat, design_params)
+#     })
+# 
+#   calc_performance(results, model_params)
+# }
 
 ## -----------------------------------------------------------------------------
 run_sim <- function(iterations, n1, n2, mean_diff, seed = NULL) {
@@ -195,23 +195,23 @@ run_sim <- function(iterations, n1, n2, mean_diff, seed = NULL) {
 
 
 ## ----eval = FALSE-------------------------------------------------------------
-#  set.seed(20150316) # change this seed value!
-#  
-#  # now express the simulation parameters as vectors/lists
-#  
-#  design_factors <- list(factor1 = , factor2 = , ...) # combine into a design set
-#  
-#  params <-
-#    tidyr::expand_grid(!!!design_factors) %>%
-#    mutate(
-#      iterations = 1000,  # change this to how many ever iterations
-#      seed = round(runif(1) * 2^30) + 1:n()
-#    )
-#  
-#  # All look right?
-#  lengths(design_factors)
-#  nrow(params)
-#  head(params)
+# set.seed(20150316) # change this seed value!
+# 
+# # now express the simulation parameters as vectors/lists
+# 
+# design_factors <- list(factor1 = , factor2 = , ...) # combine into a design set
+# 
+# params <-
+#   tidyr::expand_grid(!!!design_factors) %>%
+#   mutate(
+#     iterations = 1000,  # change this to how many ever iterations
+#     seed = round(runif(1) * 2^30) + 1:n()
+#   )
+# 
+# # All look right?
+# lengths(design_factors)
+# nrow(params)
+# head(params)
 
 ## -----------------------------------------------------------------------------
 set.seed(20200110)
@@ -251,26 +251,26 @@ results %>%
   kable()
 
 ## ----eval = FALSE-------------------------------------------------------------
-#  plan(multisession)
+# plan(multisession)
 
 ## ----furrr, warning = F, message = F, eval = FALSE----------------------------
-#  library(future)
-#  library(furrr)
-#  
-#  plan(multisession) # choose an appropriate plan from the future package
-#  
-#  system.time(
-#    results <-
-#      params %>%
-#      mutate(res = future_pmap(., .f = run_sim)) %>%
-#      unnest(cols = res)
-#  )
-#  
+# library(future)
+# library(furrr)
+# 
+# plan(multisession) # choose an appropriate plan from the future package
+# 
+# system.time(
+#   results <-
+#     params %>%
+#     mutate(res = future_pmap(., .f = run_sim)) %>%
+#     unnest(cols = res)
+# )
+# 
 
 ## ----evaluate-by-row, warning = F, message = F, eval = FALSE------------------
-#  plan(multisession)
-#  results <- evaluate_by_row(params, run_sim)
+# plan(multisession)
+# results <- evaluate_by_row(params, run_sim)
 
 ## ----setup, eval = FALSE------------------------------------------------------
-#  create_skeleton()
+# create_skeleton()
 

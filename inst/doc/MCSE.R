@@ -57,7 +57,7 @@ rel_dat <- tibble(Criterion = c("Relative Bias","Relative MSE", "Relative RMSE")
               Definition = c("$\\text{E}(T) / \\theta$", "$\\text{E}\\left[(T - \\theta)^2\\right]/ \\theta^2$", "$\\sqrt{\\text{E}\\left[(T - \\theta)^2\\right]/ \\theta^2}$"),
               Estimate = c("$\\bar{T} / \\theta$", "$\\frac{(\\bar{T} - \\theta)^2 + S_T^2}{\\theta^2}$", "$\\sqrt{\\frac{(\\bar{T} - \\theta)^2 + S_T^2}{\\theta^2}}$"),
               MCSE = c("$\\sqrt{S_T^2 / (K\\theta^2)}$", 
-                       "$\\sqrt{\\frac{1}{K\\theta^2}\\left[S_T^4 (k_T - 1) + 4 S_T^3 g_T(\\bar{T} - \\theta) + 4 S_T^2 (\\bar{T} - \\theta)^2\\right]}$", "$\\sqrt{\\frac{K - 1}{K} \\sum_{j=1}^K \\left(rRMSE_{(j)} - rRMSE)^2\\right)}$"))
+                       "$\\sqrt{\\frac{1}{K\\theta^4}\\left[S_T^4 (k_T - 1) + 4 S_T^3 g_T(\\bar{T} - \\theta) + 4 S_T^2 (\\bar{T} - \\theta)^2\\right]}$", "$\\sqrt{\\frac{K - 1}{K} \\sum_{j=1}^K \\left(rRMSE_{(j)} - rRMSE\\right)^2}$"))
 
 knitr::kable(rel_dat, escape = FALSE, caption = "Table 2. Relative Performance Criteria") %>%
   kable_styling(bootstrap_options = c("striped", "hover"))
@@ -94,8 +94,8 @@ welch_res %>%
 ## ----echo = FALSE, warning = FALSE, message = FALSE---------------------------
 hyp_dat <- tibble(Criterion = c("Rejection Rate","Coverage","Width"),
               Measure = c("Type 1 error or power", "Proportion of intervals containing true parameter", "Precision"),
-              Definition = c("$\\rho_\\alpha = Pr(P_k) < \\alpha$", "$\\omega_\\beta = Pr(A \\leq \\theta \\leq B)$", "$\\text{E}(W) = \\text{E}(B - A)$"),
-              Estimate = c("$r_\\alpha  = \\frac{1}{K} \\sum_{k=1}^K I(P_k < \\alpha)$", "$c_\\beta = \\frac{1}{K}\\sum_{k=1}^K I(A_k \\leq \\theta \\leq B_k)$", "$\\bar{W} = \\bar{B} - \\bar{A}$"),
+              Definition = c("$\\rho_\\alpha = Pr(P_k) \\lt \\alpha$", "$\\omega_\\beta = Pr(A \\leq \\theta \\leq B)$", "$\\text{E}(W) = \\text{E}(B - A)$"),
+              Estimate = c("$r_\\alpha  = \\frac{1}{K} \\sum_{k=1}^K I(P_k \\lt \\alpha)$", "$c_\\beta = \\frac{1}{K}\\sum_{k=1}^K I(A_k \\leq \\theta \\leq B_k)$", "$\\bar{W} = \\bar{B} - \\bar{A}$"),
               MCSE = c("$\\sqrt{r_\\alpha(1 - r_\\alpha) / K}$",  
                        "$\\sqrt{c_\\beta (1 - c_\\beta) / K}$", "$\\sqrt{S_W^2 / K}$"))
 

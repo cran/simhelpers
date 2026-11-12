@@ -1,3 +1,15 @@
+simhelpers 0.3.2
+=======================
+* Added a new experimental function `factorial_summary()` for analyzing simulation results following a full factorial experimental design. 
+* Added option to specify a unique ID variable for every repetition in `repeat_and_stack()` and `bundle_sim()`.
+* Refactored `bundle_sim()` so that it uses `repeat_and_stack()` internally.
+* Refined `evaluate_by_row()`:
+  - Refactored so that it uses only variables that match argument names of the function to be evaluated.
+  - Added an option `nest_results` to return a nested column of results (for more compact storage).
+* `extrapolate_coverage()` and `extrapolate_rejection()` gain an `exclude_above` argument to exclude results based on more than a certain number of bootstraps from being included in the extrapolation calculations.
+* Corrected the jackknife Monte Carlo standard error calculation for RMSE and relative RMSE so that the jackknife replicates are exact. (Thanks to @felipelfv!)
+* Corrected the Monte Carlo standard error calculation for relative RMSE to allow for negative parameters. (Thanks to @felipelfv!)
+
 simhelpers 0.3.1
 =======================
 * Added support for bias-corrected and bias-corrected-and-accelerated (BCa) bootstrap confidence intervals.
